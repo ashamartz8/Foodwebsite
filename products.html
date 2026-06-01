@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Foods | Products Network</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #0b5345;
+            /* Premium Deep Emerald Green */
+            --secondary-color: #d4ac0d;
+            /* Golden Accent */
+            --dark-color: #1a252f;
+            --light-bg: #f4f6f6;
+            --text-color: #2c3e50;
+        }
+
+        body {
+            font-family: 'Poppins', 'Cairo', sans-serif;
+            color: var(--text-color);
+            background-color: #fff;
+        }
+
+        /* Navbar — identical to index.html */
+        header {
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            left: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .logo i {
+            font-size: 26px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 30px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(11, 83, 69, 0.08);
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active-page {
+            background-color: rgba(11, 83, 69, 0.12);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .lang-btn {
+            background-color: var(--primary-color);
+            color: #fff !important;
+            padding: 6px 16px !important;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+
+        .lang-btn:hover {
+            background-color: var(--secondary-color);
+            color: #000 !important;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--primary-color);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        html[dir="rtl"] .logo i {
+            margin-left: 8px;
+            margin-right: 0;
+        }
+
+        html[dir="rtl"] .nav-links {
+            direction: rtl;
+        }
+
+        /* Mobile Responsive — identical to index.html */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                padding: 15px 5%;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                gap: 4px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                white-space: normal;
+                text-align: center;
+                width: 100%;
+                padding: 10px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .navbar {
+                padding: 12px 5%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 18px;
+            }
+
+            .logo i {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-white min-h-screen pt-20 overflow-x-hidden relative" x-data="{ 
+  activeCategory: 'All Product',
+  categories: ['All Product', 'Vegetables', 'Fruits', 'Dry fruits', 'Spices', 'Petrol Chemicals', 'Mining products', 'Frozen Foods', 'Other'],
+  products: [
+      /* VEGETABLES */
+      { name: 'Tomato', category: 'Vegetables', img: 'images/tomato.jpg' },
+      { name: 'Potato', category: 'Vegetables', img: 'images/potato.jpg' },
+      { name: 'Onion', category: 'Vegetables', img: 'images/onion.jpg' },
+      { name: 'Ladies Finger', category: 'Vegetables', img: 'images/ladiesfinger.jpg' },
+      { name: 'Drumstick', category: 'Vegetables', img: 'images/drumstick.webp' },
+      { name: 'Cucumber', category: 'Vegetables', img: 'images/cucumber.jpg' },
+      { name: 'Cauliflower', category: 'Vegetables', img: 'images/cauliflower.jpg' },
+      { name: 'Shallot', category: 'Vegetables', img: 'images/shallot.jpg' },
+      { name: 'Garlic', category: 'Vegetables', img: 'images/garlic.jpg' },
+      { name: 'Capsicum', category: 'Vegetables', img: 'images/capsicum.jpg' },
+      { name: 'Eggplant', category: 'Vegetables', img: 'images/eggplant.jpg' },
+      { name: 'Carrot', category: 'Vegetables', img: 'images/carrot.jpg' },
+      
+      /* FRUITS */
+      { name: 'Banana', category: 'Fruits', img: 'images/banana.jpg' },
+      { name: 'Apple', category: 'Fruits', img: 'images/apple.jpg' },
+      { name: 'Pineapple', category: 'Fruits', img: 'images/pineapple.jpg' },
+      { name: 'Grapes', category: 'Fruits', img: 'images/grapes.jpg' },
+      { name: 'Orange', category: 'Fruits', img: 'images/orange.jpg' },
+      { name: 'Mango', category: 'Fruits', img: 'images/mango.jpg' },
+      { name: 'Rambutan', category: 'Fruits', img: 'images/rambutan.jpg' },
+      { name: 'Dragon fruit', category: 'Fruits', img: 'images/dragonfruit.jpg' },
+      { name: 'Kiwi', category: 'Fruits', img: 'images/kiwi.jpg' },
+      { name: 'Watermelon', category: 'Fruits', img: 'images/watermelon.jpg' },
+
+      /* SPICES */
+      { name: 'Chilly', category: 'Spices', img: 'images/chilly.jpg' },
+      { name: 'Black Pepper', category: 'Spices', img: 'images/pepper.jpg' },
+      { name: 'Cinnamon', category: 'Spices', img: 'images/cinnamon.jpg' },
+      { name: 'Cardamom', category: 'Spices', img: 'images/cardamom.jpg' },
+      { name: 'Clove plant', category: 'Spices', img: 'images/clove-plant.jpg' },
+     
+     
+      /* MINING PRODUCTS */
+      
+      { name: 'Granite', category: 'Mining products', img: 'images/granite.jpg' },
+  
+
+      /* PETROL CHEMICALS */
+      { name: 'Bitumen', category: 'Petrol Chemicals', img: 'images/bitumen.jpg' },
+     
+      /* FROZEN FOODS */
+     
+      { name: 'Prawns', category: 'Frozen Foods', img: 'images/prawns.jpg' },
+     
+
+      /* OTHER / SPECIALS */
+      { name: 'Indian Classic Biriyani Rice', category: 'Other', img: 'images/rice.jpg' }
+  ]
+}">
+
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo" id="logoText">
+                <i class="fas fa-seedling"></i> <span id="brandName">Global Foods</span>
+            </a>
+            <div class="menu-toggle" id="menuToggleBtn">
+                <i class="fas fa-bars" id="menuIcon"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#home" id="navHome">Home</a></li>
+                <li><a href="index.html#about" id="navAbout">About Us</a></li>
+                <li><a href="index.html#services" id="navServices">Services</a></li>
+                <li><a href="#" class="active-page" id="navProducts">Products</a></li>
+                <li><a href="index.html#contact" id="navContact">Contact</a></li>
+                <li><a href="javascript:void(0)" class="lang-btn" onclick="toggleLanguage()" id="langBtn">AR 🇸🇦</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="relative bg-gradient-to-r from-[#0b5345] to-[#116e5c] py-28 text-center
+     overflow-hidden border-b-4 border-[#d4ac0d]">
+        <div class="absolute inset-0 z-0 opacity-15 bg-cover bg-center"
+            style="background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1400&q=80');">
+        </div>
+        <div class="relative z-10 px-4">
+            <span class="text-xs font-bold uppercase tracking-[0.4em] text-[#d4ac0d] bg-black/20 px-4 py-2 rounded-full"
+                id="bannerTag"><i class="fas fa-globe mr-2"></i>Global Import-Export Grid</span>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight uppercase mt-4" id="bannerTitle">
+                PRODUCTS PORTFOLIO</h1>
+            <p class="text-xs text-gray-300 font-medium tracking-[0.2em] uppercase mt-3" id="bannerSub">Home
+                &nbsp;/&nbsp; Sourcing Index</p>
+        </div>
+    </div>
+
+    <section class="max-w-[1440px] px-16 max-md:px-4 mx-auto mt-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end border-b border-gray-100 pb-10">
+            <div class="lg:col-span-8 bg-white">
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="w-12 h-[2px] bg-[#0b5345]"></span>
+                    <span class="text-[#0b5345] font-bold uppercase tracking-[0.4em] text-[10px]"
+                        id="networkLabel">Premium Logistics</span>
+                </div>
+                <h2 class="text-4xl max-md:text-3xl md:text-[65px] font-bold uppercase tracking-tighter leading-[0.95] text-[#1a252f]"
+                    id="mainGridTitle">
+                    LET'S CHECK OUR <br />
+                    <span class="text-[#0b5345] italic font-black">SOURCING PRODUCTS</span>
+                </h2>
+            </div>
+            <div class="lg:col-span-4 bg-gray-50 p-6 border-l-4 border-[#d4ac0d] rounded-r-xl">
+                <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#d4ac0d] mb-1" id="gridSubLabel">
+                    Corporate Grid</p>
+                <p class="text-sm font-medium text-gray-600 leading-relaxed" id="gridDescText">
+                    Connecting premium tier local cultivators directly into high-speed cross border freight pipelines.
+                </p>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mt-8">
+            <template x-for="cat in categories" :key="cat">
+                <button @click="activeCategory = cat"
+                    :class="activeCategory === cat ? 'bg-[#0b5345] text-white border-[#0b5345] shadow-md shadow-[#0b5345]/20' : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border-gray-200'"
+                    class="flex-grow md:flex-none px-5 py-3 text-[11px] font-bold uppercase tracking-[0.05em] transition-all duration-300 border rounded-lg cursor-pointer text-center"
+                    x-text="cat">
+                </button>
+            </template>
+        </div>
+    </section>
+
+    <section class="max-w-[1440px] mx-auto px-16 max-md:px-4 py-16">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <template x-for="(product, idx) in products" :key="product.name">
+                <div x-show="activeCategory === 'All Product' || product.category === activeCategory"
+                    x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    class="group relative h-[340px] overflow-hidden rounded-2xl border border-gray-100 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-2 bg-white">
+
+                    <div class="w-full h-full overflow-hidden">
+                        <img :src="product.img" :alt="product.name"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700" />
+                    </div>
+
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-[#0b5345] via-[#0b5345]/30 to-transparent opacity-95 group-hover:via-[#0b5345]/50 transition-all duration-500">
+                    </div>
+
+                    <div
+                        class="absolute bottom-5 left-5 right-5 p-5 backdrop-blur-md bg-white/10 border border-white/20 rounded-xl">
+                        <span class="text-[9px] font-bold uppercase tracking-widest text-[#d4ac0d] mb-1 block"
+                            x-text="product.category"></span>
+                        <h3 class="text-xl font-bold text-white uppercase tracking-tight" x-text="product.name"></h3>
+
+                        <div class="h-[2px] w-full bg-white/20 mt-3 rounded-full overflow-hidden">
+                            <div class="h-full bg-[#d4ac0d] w-[35%]"></div>
+                        </div>
+                    </div>
+
+                    <div class="absolute top-4 right-4 bg-[#d4ac0d] text-[#0b5345] text-[9px] font-bold px-3 py-1 rounded-full shadow-sm"
+                        x-text="'BATCH_' + (idx + 401)"></div>
+                </div>
+            </template>
+        </div>
+    </section>
+
+    <section class="bg-gray-50 py-20 relative overflow-hidden border-t border-gray-200">
+        <div class="max-w-[1440px] mx-auto text-center px-6 relative z-10">
+            <h2 class="text-3xl md:text-5xl font-extrabold uppercase tracking-tight mb-4 text-[#1a252f]"
+                id="bottomTitle">
+                Custom Sourcing <span class="text-[#0b5345] italic" id="bottomItalic">Requirements?</span>
+            </h2>
+            <p class="text-sm text-gray-500 font-medium max-w-xl mx-auto mb-8" id="bottomDesc">
+                Connect with our corporate trade desks directly to draft automated delivery parameters for any custom
+                agricultural node.
+            </p>
+            <button onclick="window.location.href='index.html#contact'"
+                class="relative group overflow-hidden bg-[#0b5345] px-12 py-4 rounded-full shadow-lg cursor-pointer transition-all duration-300 hover:scale-105 active:scale-95">
+                <span class="relative z-10 text-white font-bold uppercase tracking-[0.2em] text-xs"
+                    id="bottomBtn">Contact Trade Desk</span>
+            </button>
+        </div>
+    </section>
+
+    <script>
+        const translations = {
+            en: {
+                brandName: "Global Foods",
+                navHome: "Home", navAbout: "About Us", navServices: "Services", navProducts: "Products", navContact: "Contact",
+                bannerTag: "Global Import-Export Grid", bannerTitle: "PRODUCTS PORTFOLIO", bannerSub: "Home / Sourcing Index",
+                networkLabel: "Premium Logistics", mainGridTitle: "LET'S CHECK OUR SOURCING PRODUCTS",
+                gridSubLabel: "Corporate Grid", gridDescText: "Connecting premium tier local cultivators directly into high-speed cross border freight pipelines.",
+                bottomTitle: "Custom Sourcing ", bottomItalic: "Requirements?", bottomDesc: "Connect with our corporate trade desks directly to draft automated delivery parameters for any custom agricultural node.",
+                bottomBtn: "Contact Trade Desk"
+            },
+            ar: {
+                brandName: "الأغذية العالمية",
+                navHome: "الرئيسية", navAbout: "من نحن", navServices: "خدماتنا", navProducts: "منتجاتنا", navContact: "اتصل بنا",
+                bannerTag: "شبكة الاستيراد والتصدير العالمية", bannerTitle: "محفظة المنتجات", bannerSub: "الرئيسية / دليل المصادر",
+                networkLabel: "لوجستيات متميزة", mainGridTitle: "دعونا نتحقق من منتجاتنا المصدرية",
+                gridSubLabel: "الشبكة المؤسسية", gridDescText: "ربط المزارعين المحليين من الدرجة الأولى مباشرة بخطوط الشحن السريع عبر الحدود.",
+                bottomTitle: "متطلبات التوريد ", bottomItalic: "المخصصة؟", bottomDesc: "تواصل مع مكاتب التجارة الخاصة بنا مباشرة لصياغة معايير تسليم مؤتمتة لأي منتج زراعي مخصص.",
+                bottomBtn: "الاتصال بمكتب التجارة"
+            }
+        };
+
+        let currentLang = localStorage.getItem('siteLang') || 'en';
+        applyLanguage(currentLang);
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            localStorage.setItem('siteLang', currentLang);
+            applyLanguage(currentLang);
+        }
+
+        function applyLanguage(lang) {
+            const t = translations[lang];
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+
+            document.getElementById('langBtn').innerText = lang === 'en' ? 'AR 🇸🇦' : 'EN 🇬🇧';
+            document.getElementById('brandName').innerText = t.brandName;
+            document.getElementById('navHome').innerText = t.navHome;
+            document.getElementById('navAbout').innerText = t.navAbout;
+            document.getElementById('navServices').innerText = t.navServices;
+            document.getElementById('navProducts').innerText = t.navProducts;
+            document.getElementById('navContact').innerText = t.navContact;
+            document.getElementById('bannerTag').innerHTML = `<i class='fas fa-globe mr-2'></i>` + t.bannerTag;
+            document.getElementById('bannerTitle').innerText = t.bannerTitle;
+            document.getElementById('bannerSub').innerText = t.bannerSub;
+            document.getElementById('networkLabel').innerText = t.networkLabel;
+            document.getElementById('mainGridTitle').innerHTML = t.mainGridTitle;
+            document.getElementById('gridSubLabel').innerText = t.gridSubLabel;
+            document.getElementById('gridDescText').innerText = t.gridDescText;
+            document.getElementById('bottomTitle').innerHTML = t.bottomTitle + `<span class="text-[#0b5345] italic">${t.bottomItalic}</span>`;
+            document.getElementById('bottomDesc').innerText = t.bottomDesc;
+            document.getElementById('bottomBtn').innerText = t.bottomBtn;
+        }
+
+        // Navbar Hamburger Script Toggle
+        const menuToggleBtn = document.getElementById('menuToggleBtn');
+        const navLinks = document.getElementById('navLinks');
+        const menuIcon = document.getElementById('menuIcon');
+
+        menuToggleBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            if (navLinks.classList.contains('active')) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+    </script>
+</body>
+
+</html>
