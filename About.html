@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>About Us | Global Foods Co.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #0b5345;
+            --secondary-color: #d4ac0d;
+            --accent-color: #117a65;
+            --text-dark: #2c3e50;
+            --text-light: #ffffff;
+            --bg-light: #f4f6f6;
+            --font-en: 'Poppins', sans-serif;
+            --font-ar: 'Cairo', sans-serif;
+            --transition-default: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body { font-family: var(--font-en); color: var(--text-dark); line-height: 1.6; background-color: #fff; overflow-x: hidden; width: 100%; }
+        html[dir="rtl"] body { font-family: var(--font-ar); }
+        img { max-width: 100%; height: auto; display: block; }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* ── HEADER ── */
+        header {
+            background-color: rgba(255,255,255,0.98);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: fixed; width: 100%; top: 0; z-index: 1000; left: 0;
+        }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 5%; max-width: 1400px; margin: 0 auto; gap: 15px; }
+        .logo { font-size: 22px; font-weight: 700; color: var(--primary-color); text-decoration: none; display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+        .logo i { font-size: 26px; }
+        .nav-links { display: flex; list-style: none; align-items: center; gap: 8px; }
+        .nav-links li { margin: 0; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; padding: 8px 12px; font-size: 14px; border-radius: 30px; transition: var(--transition-default); white-space: nowrap; }
+        .nav-links a:hover { background-color: rgba(11,83,69,0.08); color: var(--primary-color); }
+        .nav-links a.active-page { background-color: rgba(11,83,69,0.12); color: var(--primary-color); font-weight: 600; }
+        .lang-btn { background-color: var(--primary-color); color: #fff !important; padding: 6px 16px !important; border-radius: 30px; font-weight: 600; }
+        .lang-btn:hover { background-color: var(--secondary-color); color: #000 !important; }
+        .menu-toggle { display: none; font-size: 28px; cursor: pointer; color: var(--primary-color); transition: var(--transition-default); }
+
+        /* ── HERO / PAGE BANNER ── */
+        .page-hero {
+            background: linear-gradient(rgba(11,83,69,0.82), rgba(0,0,0,0.65)),
+                url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1400&q=80') no-repeat center center/cover;
+            min-height: 52vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; color: #fff; padding: 120px 20px 80px;
+        }
+        .page-hero h1 { font-size: clamp(34px, 7vw, 56px); font-weight: 700; margin-bottom: 14px; line-height: 1.2; }
+        .page-hero p { font-size: clamp(15px, 3vw, 20px); opacity: 0.9; max-width: 680px; margin: 0 auto; }
+
+        /* ── BREADCRUMB ── */
+        .breadcrumb { background: var(--bg-light); padding: 14px 5%; font-size: 13px; color: #6b7a8d; border-bottom: 1px solid #e0e9e9; }
+        .breadcrumb a { color: var(--accent-color); text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb span { margin: 0 8px; }
+
+        /* ── GLOBAL SECTION ── */
+        section { padding: 70px 5%; max-width: 1400px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: clamp(28px, 6vw, 38px); color: var(--primary-color); margin-bottom: 12px; font-weight: 700; }
+        .section-subtitle { text-align: center; color: #5d6e7e; margin-bottom: 45px; max-width: 750px; margin-left: auto; margin-right: auto; font-size: 16px; padding: 0 12px; }
+        .bg-light-sec { background-color: var(--bg-light); width: 100%; }
+
+        .btn { display: inline-block; background-color: var(--secondary-color); color: #000; padding: 12px 28px; text-decoration: none; font-weight: 600; border-radius: 40px; transition: var(--transition-default); border: none; cursor: pointer; }
+        .btn:hover { background-color: #fff; color: var(--primary-color); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+
+        /* ── STORY SECTION ── */
+        .story-container { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+        .story-img-box, .story-text { flex: 1; min-width: 280px; }
+        .story-img { width: 100%; border-radius: 24px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); object-fit: cover; height: 380px; }
+        .story-text h3 { font-size: clamp(22px, 4vw, 30px); color: var(--primary-color); margin-bottom: 18px; }
+        .story-text p { color: #4a5b6e; margin-bottom: 16px; font-size: 15px; line-height: 1.8; }
+        .highlight-bar { border-left: 4px solid var(--secondary-color); padding: 14px 20px; background: #fefdf5; border-radius: 0 12px 12px 0; margin: 20px 0; font-style: italic; color: var(--text-dark); font-size: 15px; }
+        html[dir="rtl"] .highlight-bar { border-left: none; border-right: 4px solid var(--secondary-color); border-radius: 12px 0 0 12px; }
+
+        /* ── RICE HIGHLIGHT BANNER ── */
+        .rice-highlight {
+            width: 100%;
+            background: linear-gradient(135deg, #0b5345 0%, #117a65 40%, #1a8a72 60%, #0b5345 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .rice-highlight::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+            opacity: 0.12;
+        }
+        .rice-highlight-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 70px 5%;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+        .rice-badge-side {
+            flex: 1;
+            min-width: 260px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 18px;
+        }
+        .rice-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(212,172,13,0.18);
+            border: 1px solid rgba(212,172,13,0.5);
+            color: var(--secondary-color);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 30px;
+        }
+        .rice-main-title {
+            font-size: clamp(30px, 5vw, 52px);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+        }
+        .rice-main-title span {
+            color: var(--secondary-color);
+            display: block;
+        }
+        .rice-desc {
+            color: rgba(255,255,255,0.82);
+            font-size: 15px;
+            line-height: 1.8;
+            max-width: 480px;
+        }
+        .rice-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 4px;
+        }
+        .rice-pill {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 5px 14px;
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+        }
+        .rice-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--secondary-color);
+            color: #000;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 13px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            transition: var(--transition-default);
+            margin-top: 6px;
+        }
+        .rice-cta:hover {
+            background: #fff;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        }
+        .rice-img-side {
+            flex: 1;
+            min-width: 260px;
+            position: relative;
+        }
+        .rice-img-frame {
+            position: relative;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+        }
+        .rice-img-frame img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .rice-img-frame:hover img {
+            transform: scale(1.04);
+        }
+        .rice-img-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 30px 24px 22px;
+        }
+        .rice-img-label {
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+        .rice-star-row {
+            display: flex;
+            gap: 3px;
+            margin-top: 5px;
+        }
+        .rice-star-row i {
+            color: var(--secondary-color);
+            font-size: 13px;
+        }
+        /* floating accent dots */
+        .rice-dot {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(212,172,13,0.15);
+        }
+        .rice-dot-1 { width: 160px; height: 160px; top: -40px; right: -40px; }
+        .rice-dot-2 { width: 80px; height: 80px; bottom: 20px; left: -20px; background: rgba(255,255,255,0.06); }
+
+        /* ── STATS STRIP ── */
+        .stats-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px; }
+        .stat-box { text-align: center; background: #fff; border-radius: 20px; padding: 30px 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); border-bottom: 4px solid var(--secondary-color); transition: var(--transition-default); }
+        .stat-box:hover { transform: translateY(-5px); }
+        .stat-box h3 { font-size: clamp(32px, 6vw, 46px); color: var(--primary-color); font-weight: 700; }
+        .stat-box p { color: #5d6e7e; font-size: 14px; margin-top: 6px; font-weight: 500; }
+
+        /* ── MISSION / VISION / VALUES ── */
+        .mvv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
+        .mvv-card { background: #fff; border-radius: 24px; padding: 36px 28px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: var(--transition-default); text-align: center; }
+        .mvv-card:hover { transform: translateY(-8px); box-shadow: 0 20px 35px rgba(0,0,0,0.1); }
+        .mvv-icon { width: 72px; height: 72px; background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 22px; }
+        .mvv-icon i { font-size: 30px; color: #fff; }
+        .mvv-card h3 { font-size: 1.3rem; color: var(--primary-color); margin-bottom: 14px; }
+        .mvv-card p { color: #5d6e7e; font-size: 14px; line-height: 1.8; }
+
+        /* ── TIMELINE ── */
+        .timeline { position: relative; max-width: 900px; margin: 0 auto; padding: 10px 0; }
+        .timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color)); transform: translateX(-50%); }
+        html[dir="rtl"] .timeline::before { left: auto; right: 50%; transform: translateX(50%); }
+        .tl-item { display: flex; justify-content: flex-end; padding-right: calc(50% + 30px); margin-bottom: 40px; position: relative; }
+        html[dir="rtl"] .tl-item { justify-content: flex-start; padding-right: 0; padding-left: calc(50% + 30px); }
+        .tl-item:nth-child(even) { justify-content: flex-start; padding-right: 0; padding-left: calc(50% + 30px); }
+        html[dir="rtl"] .tl-item:nth-child(even) { justify-content: flex-end; padding-left: 0; padding-right: calc(50% + 30px); }
+        .tl-dot { position: absolute; left: 50%; top: 18px; transform: translateX(-50%); width: 18px; height: 18px; background: var(--secondary-color); border: 3px solid var(--primary-color); border-radius: 50%; z-index: 2; }
+        html[dir="rtl"] .tl-dot { left: auto; right: 50%; transform: translateX(50%); }
+        .tl-content { background: #fff; border-radius: 18px; padding: 22px 26px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); max-width: 340px; }
+        .tl-year { font-size: 13px; font-weight: 700; color: var(--secondary-color); letter-spacing: 1px; margin-bottom: 6px; }
+        .tl-content h4 { color: var(--primary-color); font-size: 1rem; margin-bottom: 8px; }
+        .tl-content p { font-size: 13px; color: #5d6e7e; line-height: 1.7; }
+
+        /* ── TEAM ── */
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .team-card { background: #fff; text-align: center; border-radius: 28px; overflow: hidden; box-shadow: 0 12px 24px rgba(0,0,0,0.06); transition: var(--transition-default); }
+        .team-card:hover { transform: translateY(-5px); }
+        .team-img-box { width: 100%; height: 290px; overflow: hidden; }
+        .team-card img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+        .team-card h4 { margin-top: 20px; color: var(--primary-color); font-size: 1.2rem; }
+        .team-card span { color: var(--secondary-color); font-size: 13px; font-weight: 600; display: block; margin: 5px 0 10px; }
+        .team-card p { font-size: 13px; color: #5d6e7e; padding: 0 18px 22px; line-height: 1.7; }
+
+        /* ── CERTIFICATIONS ── */
+        .cert-container { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
+        .cert-badge { background: #fff; padding: 22px 18px; border-radius: 60px; width: 150px; text-align: center; border: 2px dashed var(--accent-color); font-weight: 700; color: var(--primary-color); font-size: 14px; box-shadow: 0 6px 16px rgba(0,0,0,0.05); }
+        .cert-badge i { display: block; font-size: 28px; color: var(--secondary-color); margin-bottom: 10px; }
+
+        /* ── PARTNERS ── */
+        .partners-grid { display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap; }
+        .partner-item { font-size: 20px; font-weight: 800; color: #9aacb5; letter-spacing: 2px; transition: var(--transition-default); }
+        .partner-item:hover { color: var(--primary-color); }
+
+        /* ── CTA BAND ── */
+        .cta-band { background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); padding: 70px 5%; text-align: center; color: #fff; }
+        .cta-band h2 { font-size: clamp(26px, 5vw, 40px); margin-bottom: 16px; font-weight: 700; }
+        .cta-band p { font-size: 16px; opacity: 0.9; margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .btn-white { background: #fff; color: var(--primary-color); }
+        .btn-white:hover { background: var(--secondary-color); color: #000; }
+
+        /* ── FOOTER ── */
+        footer { background-color: var(--primary-color); color: #fff; text-align: center; padding: 32px 20px; font-size: 14px; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 992px) {
+            .navbar { padding: 12px 5%; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: #fff; box-shadow: 0 20px 30px rgba(0,0,0,0.1); padding: 25px 20px; gap: 20px; border-radius: 0 0 24px 24px; z-index: 999; }
+            .nav-links.active { display: flex; }
+            .nav-links a { white-space: normal; text-align: center; width: 100%; padding: 10px; }
+            .menu-toggle { display: block; }
+            .timeline::before { left: 20px; }
+            html[dir="rtl"] .timeline::before { right: 20px; left: auto; }
+            .tl-item, .tl-item:nth-child(even) { justify-content: flex-start; padding-left: 60px; padding-right: 0; }
+            html[dir="rtl"] .tl-item, html[dir="rtl"] .tl-item:nth-child(even) { justify-content: flex-start; padding-right: 60px; padding-left: 0; }
+            .tl-dot { left: 11px; }
+            html[dir="rtl"] .tl-dot { right: 11px; left: auto; }
+            .tl-content { max-width: 100%; }
+            .rice-highlight-inner { gap: 36px; }
+        }
+        @media (max-width: 680px) {
+            section { padding: 50px 5%; }
+            .story-container { flex-direction: column; }
+            .story-img { height: 260px; }
+            .rice-highlight-inner { flex-direction: column; padding: 50px 5%; }
+            .rice-img-frame img { height: 260px; }
+        }
+        @media (max-width: 480px) {
+            .logo { font-size: 18px; }
+            .logo i { font-size: 22px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── HEADER ── -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo" id="logoText">
+                <i class="fas fa-seedling"></i> Global Foods
+            </a>
+            <div class="menu-toggle" id="menuToggleBtn">
+                <i class="fas fa-bars" id="menuIcon"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" id="navHome">Home</a></li>
+                <li><a href="About.html" class="active-page" id="navAbout">About Us</a></li>
+                <li><a href="index.html#services" id="navServices">Services</a></li>
+                <li><a href="products.html" id="navProducts">Products</a></li>
+                <li><a href="contact.html" id="navContact">Contact</a></li>
+                <li><a href="javascript:void(0)" class="lang-btn" onclick="toggleLanguage()" id="langBtn">AR 🇸🇦</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ── PAGE HERO ── -->
+    <div class="page-hero">
+        <div>
+            <h1 id="heroTitle">About Global Foods Co.</h1>
+            <p id="heroDesc">Decades of trust, innovation, and sustainable agriculture — powering global food supply chains.</p>
+        </div>
+    </div>
+
+    <!-- ── OUR STORY ── -->
+    <section id="story" class="reveal">
+        <h2 class="section-title" id="storyTitle">Our Story</h2>
+        <p class="section-subtitle" id="storySub">From a regional grain trader to a global agro-investment powerhouse.</p>
+        <div class="story-container">
+            <div class="story-img-box">
+                <img src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=700&q=80" alt="Our Story" class="story-img">
+            </div>
+            <div class="story-text">
+                <h3 id="storyH3">Built on Trust, Driven by Quality</h3>
+                <p id="storyP1">Global Foods Co. was established with a singular vision: to become the most trusted name in international food trading and agricultural investments. Starting from a network of certified grain suppliers across South Asia, we expanded our operations to span 25+ countries across 4 continents.</p>
+                <div class="highlight-bar" id="storyQuote">"Our foundation is quality. Our promise is reliability. Our mission is nourishment."</div>
+                <p id="storyP2">Over the years, we have invested heavily in processing infrastructure, cold-chain logistics, and sustainable farming partnerships. Today, we handle over 150,000 metric tons of premium food commodities annually, serving hypermarket chains, government food authorities, and enterprise distributors worldwide.</p>
+                <br>
+                <a href="contact.html" class="btn" id="storyBtn">Partner With Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── RICE HIGHLIGHT ── -->
+    <div class="rice-highlight reveal">
+        <div class="rice-highlight-inner">
+            <div class="rice-badge-side">
+                <div class="rice-tag"><i class="fas fa-star"></i> Signature Product</div>
+                <h2 class="rice-main-title">
+                    Indian Classic
+                    <span>Biriyani Rice</span>
+                </h2>
+                <p class="rice-desc" id="riceDesc">
+                    Our flagship export — long-grain, aromatic Biryani Rice sourced from the finest paddies of South India. Aged to perfection, each grain holds its form through slow-cooking, delivering the authentic flavour and fragrance that defines a world-class biryani.
+                </p>
+                <div class="rice-pills">
+                    <span class="rice-pill"><i class="fas fa-check" style="margin-right:5px; color:var(--secondary-color)"></i> Extra Long Grain</span>
+                    <span class="rice-pill"><i class="fas fa-check" style="margin-right:5px; color:var(--secondary-color)"></i> Low GI</span>
+                    <span class="rice-pill"><i class="fas fa-check" style="margin-right:5px; color:var(--secondary-color)"></i> 100% Halal</span>
+                    <span class="rice-pill"><i class="fas fa-check" style="margin-right:5px; color:var(--secondary-color)"></i> ISO Certified</span>
+                    <span class="rice-pill"><i class="fas fa-check" style="margin-right:5px; color:var(--secondary-color)"></i> Aged 12 Months</span>
+                </div>
+                <a href="products.html" class="rice-cta">
+                    <i class="fas fa-arrow-right"></i> Explore Full Range
+                </a>
+            </div>
+            <div class="rice-img-side">
+                <div class="rice-dot rice-dot-1"></div>
+                <div class="rice-dot rice-dot-2"></div>
+                <div class="rice-img-frame">
+                    <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=700&q=80" alt="Indian Classic Biriyani Rice">
+                    <div class="rice-img-overlay">
+                        <div class="rice-img-label">Indian Classic Biriyani Rice</div>
+                        <div class="rice-star-row">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── STATS ── -->
+    <div class="bg-light-sec">
+        <section id="stats" class="reveal">
+            <div class="stats-strip">
+                <div class="stat-box"><h3>25+</h3><p id="st1">Countries Served</p></div>
+                <div class="stat-box"><h3>150K</h3><p id="st2">Metric Tons / Year</p></div>
+                <div class="stat-box"><h3>18+</h3><p id="st3">Years of Operations</p></div>
+                <div class="stat-box"><h3>500+</h3><p id="st4">Enterprise Clients</p></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ── MISSION / VISION / VALUES ── -->
+    <section id="mvv" class="reveal">
+        <h2 class="section-title" id="mvvTitle">Mission, Vision & Values</h2>
+        <p class="section-subtitle" id="mvvSub">The principles that guide every shipment, every partnership, every harvest.</p>
+        <div class="mvv-grid">
+            <div class="mvv-card">
+                <div class="mvv-icon"><i class="fas fa-bullseye"></i></div>
+                <h3 id="mv1Title">Our Mission</h3>
+                <p id="mv1Desc">To source, process, and deliver premium food commodities with unwavering quality standards — connecting global farmlands to local communities efficiently and sustainably.</p>
+            </div>
+            <div class="mvv-card">
+                <div class="mvv-icon"><i class="fas fa-eye"></i></div>
+                <h3 id="mv2Title">Our Vision</h3>
+                <p id="mv2Desc">To be the world's most trusted agro-food trading enterprise, building a healthier planet through responsible sourcing, zero-waste processing, and transparent supply chains.</p>
+            </div>
+            <div class="mvv-card">
+                <div class="mvv-icon"><i class="fas fa-handshake"></i></div>
+                <h3 id="mv3Title">Our Values</h3>
+                <p id="mv3Desc">Integrity in every contract. Innovation in every process. Sustainability in every field. We stand by our partners, our farmers, and the communities we feed — always.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── JOURNEY TIMELINE ── -->
+    <div class="bg-light-sec">
+        <section id="timeline" class="reveal">
+            <h2 class="section-title" id="tlTitle">Our Journey</h2>
+            <p class="section-subtitle" id="tlSub">Key milestones that shaped Global Foods Co. into what it is today.</p>
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-content"><div class="tl-year" id="tl1Year">2006</div><h4 id="tl1Title">Company Founded</h4><p id="tl1Desc">Global Foods Co. was established in Riyadh with a focus on premium rice and grain imports from South Asia.</p></div>
+                    <div class="tl-dot"></div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-content"><div class="tl-year" id="tl2Year">2010</div><h4 id="tl2Title">First Processing Mill</h4><p id="tl2Desc">Launched our first dedicated milling and packaging facility, gaining ISO 22000 & HACCP certifications.</p></div>
+                    <div class="tl-dot"></div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-content"><div class="tl-year" id="tl3Year">2014</div><h4 id="tl3Title">GCC Expansion</h4><p id="tl3Desc">Expanded distribution network across the Gulf Cooperation Council, partnering with major hypermarket chains.</p></div>
+                    <div class="tl-dot"></div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-content"><div class="tl-year" id="tl4Year">2018</div><h4 id="tl4Title">Eco Farming Initiative</h4><p id="tl4Desc">Launched our sustainable agro-farming program supporting 1,200+ smallholder farmers with bio-organic inputs.</p></div>
+                    <div class="tl-dot"></div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-content"><div class="tl-year" id="tl5Year">2022</div><h4 id="tl5Title">Global Logistics Hub</h4><p id="tl5Desc">Opened integrated sea-air-land logistics hub enabling direct delivery to 25+ countries with full cold-chain traceability.</p></div>
+                    <div class="tl-dot"></div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-content"><div class="tl-year" id="tl6Year">2026</div><h4 id="tl6Title">Digital Trade Platform</h4><p id="tl6Desc">Launched proprietary B2B trade portal for enterprise clients, streamlining procurement, tracking, and quality assurance.</p></div>
+                    <div class="tl-dot"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ── TEAM ── -->
+    <section id="team" class="reveal">
+        <h2 class="section-title" id="teamTitle">Executive Board</h2>
+        <p class="section-subtitle" id="teamSub">The strategic leadership steering our global food operations forward.</p>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-img-box"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80" alt="CEO"></div>
+                <h4 id="tm1Name">Tariq Al-Muhaidib</h4>
+                <span id="tm1Pos">Chairman / Managing Director</span>
+                <p id="tm1Bio">With over 20 years in international commodity trading, Tariq has built Global Foods from a regional importer into a globally recognized enterprise brand.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-img-box"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=80" alt="COO"></div>
+                <h4 id="tm2Name">Faisal Mehrab</h4>
+                <span id="tm2Pos">Chief Operations Officer</span>
+                <p id="tm2Bio">Faisal oversees all processing, logistics, and quality control operations across our global facilities — ensuring zero-compromise delivery standards.</p>
+            </div>
+            <div class="team-card">
+                <div class="team-img-box"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="Director"></div>
+                <h4 id="tm3Name">Sarah Al-Nafea</h4>
+                <span id="tm3Pos">Director of Global Investments</span>
+                <p id="tm3Bio">Sarah leads our agro-investment portfolio across 4 continents, spearheading sustainable farming partnerships and institutional trade agreements.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CERTIFICATIONS ── -->
+    <div class="bg-light-sec">
+        <section id="certs" class="reveal">
+            <h2 class="section-title" id="certTitle">Certified Global Standards</h2>
+            <p class="section-subtitle" id="certSub">Every product we deliver is backed by internationally recognized quality certifications.</p>
+            <div class="cert-container">
+                <div class="cert-badge"><i class="fas fa-award"></i>ISO 22000</div>
+                <div class="cert-badge"><i class="fas fa-shield-alt"></i>HACCP</div>
+                <div class="cert-badge"><i class="fas fa-check-circle"></i>100% Halal</div>
+                <div class="cert-badge"><i class="fas fa-leaf"></i>Organic Cert.</div>
+                <div class="cert-badge"><i class="fas fa-globe"></i>GCC Approved</div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ── PARTNERS ── -->
+    <section id="partners" class="reveal">
+        <h2 class="section-title" id="partnersTitle">Trusted Brands & Partners</h2>
+        <p class="section-subtitle" id="partnersSub">Global enterprises that rely on our supply quality day in, day out.</p>
+        <div class="partners-grid">
+            <div class="partner-item">MEHRAB</div>
+            <div class="partner-item">AL-MAHA</div>
+            <div class="partner-item">AL-NAFEA</div>
+            <div class="partner-item">AL-RAYA</div>
+            <div class="partner-item">EUROFOOD</div>
+            <div class="partner-item">AGROTEX</div>
+        </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <div class="cta-band reveal">
+        <h2 id="ctaTitle">Ready to Source With Confidence?</h2>
+        <p id="ctaDesc">Join hundreds of enterprise clients across the globe who trust Global Foods Co. for their wholesale food supply requirements.</p>
+        <a href="contact.html" class="btn btn-white" id="ctaBtn">Get In Touch Today</a>
+    </div>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+        <p id="footerText">© 2026 Global Foods Co. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const menuIconElem = document.getElementById('menuIcon');
+            navLinks.classList.toggle('active');
+            if (navLinks.classList.contains('active')) {
+                menuIconElem.classList.replace('fa-bars', 'fa-times');
+            } else {
+                menuIconElem.classList.replace('fa-times', 'fa-bars');
+            }
+        }
+        document.getElementById('menuToggleBtn').addEventListener('click', toggleMenu);
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const nav = document.getElementById('navLinks');
+                const icon = document.getElementById('menuIcon');
+                if (nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                    icon.classList.replace('fa-times', 'fa-bars');
+                }
+            });
+        });
+
+        function revealSections() {
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 60) el.classList.add('active');
+            });
+        }
+        window.addEventListener('scroll', revealSections);
+        window.addEventListener('load', revealSections);
+
+        const data = {
+            en: {
+                logo: "Global Foods",
+                home: "Home", about: "About Us", services: "Services", products: "Products", contact: "Contact",
+                langBtn: "AR 🇸🇦",
+                heroTitle: "About Global Foods Co.",
+                heroDesc: "Decades of trust, innovation, and sustainable agriculture — powering global food supply chains.",
+                storyTitle: "Our Story", storySub: "From a regional grain trader to a global agro-investment powerhouse.",
+                storyH3: "Built on Trust, Driven by Quality",
+                storyP1: "Global Foods Co. was established with a singular vision: to become the most trusted name in international food trading and agricultural investments. Starting from a network of certified grain suppliers across South Asia, we expanded our operations to span 25+ countries across 4 continents.",
+                storyQuote: '"Our foundation is quality. Our promise is reliability. Our mission is nourishment."',
+                storyP2: "Over the years, we have invested heavily in processing infrastructure, cold-chain logistics, and sustainable farming partnerships. Today, we handle over 150,000 metric tons of premium food commodities annually, serving hypermarket chains, government food authorities, and enterprise distributors worldwide.",
+                storyBtn: "Partner With Us",
+                riceDesc: "Our flagship export — long-grain, aromatic Biryani Rice sourced from the finest paddies of South India. Aged to perfection, each grain holds its form through slow-cooking, delivering the authentic flavour and fragrance that defines a world-class biryani.",
+                st1: "Countries Served", st2: "Metric Tons / Year", st3: "Years of Operations", st4: "Enterprise Clients",
+                mvvTitle: "Mission, Vision & Values", mvvSub: "The principles that guide every shipment, every partnership, every harvest.",
+                mv1Title: "Our Mission", mv1Desc: "To source, process, and deliver premium food commodities with unwavering quality standards — connecting global farmlands to local communities efficiently and sustainably.",
+                mv2Title: "Our Vision", mv2Desc: "To be the world's most trusted agro-food trading enterprise, building a healthier planet through responsible sourcing, zero-waste processing, and transparent supply chains.",
+                mv3Title: "Our Values", mv3Desc: "Integrity in every contract. Innovation in every process. Sustainability in every field. We stand by our partners, our farmers, and the communities we feed — always.",
+                tlTitle: "Our Journey", tlSub: "Key milestones that shaped Global Foods Co. into what it is today.",
+                tl1Year: "2006", tl1Title: "Company Founded", tl1Desc: "Global Foods Co. was established in Riyadh with a focus on premium rice and grain imports from South Asia.",
+                tl2Year: "2010", tl2Title: "First Processing Mill", tl2Desc: "Launched our first dedicated milling and packaging facility, gaining ISO 22000 & HACCP certifications.",
+                tl3Year: "2014", tl3Title: "GCC Expansion", tl3Desc: "Expanded distribution network across the Gulf Cooperation Council, partnering with major hypermarket chains.",
+                tl4Year: "2018", tl4Title: "Eco Farming Initiative", tl4Desc: "Launched our sustainable agro-farming program supporting 1,200+ smallholder farmers with bio-organic inputs.",
+                tl5Year: "2022", tl5Title: "Global Logistics Hub", tl5Desc: "Opened integrated sea-air-land logistics hub enabling direct delivery to 25+ countries with full cold-chain traceability.",
+                tl6Year: "2026", tl6Title: "Digital Trade Platform", tl6Desc: "Launched proprietary B2B trade portal for enterprise clients, streamlining procurement, tracking, and quality assurance.",
+                teamTitle: "Executive Board", teamSub: "The strategic leadership steering our global food operations forward.",
+                tm1Name: "Tariq Al-Muhaidib", tm1Pos: "Chairman / Managing Director", tm1Bio: "With over 20 years in international commodity trading, Tariq has built Global Foods from a regional importer into a globally recognized enterprise brand.",
+                tm2Name: "Faisal Mehrab", tm2Pos: "Chief Operations Officer", tm2Bio: "Faisal oversees all processing, logistics, and quality control operations across our global facilities — ensuring zero-compromise delivery standards.",
+                tm3Name: "Sarah Al-Nafea", tm3Pos: "Director of Global Investments", tm3Bio: "Sarah leads our agro-investment portfolio across 4 continents, spearheading sustainable farming partnerships and institutional trade agreements.",
+                certTitle: "Certified Global Standards", certSub: "Every product we deliver is backed by internationally recognized quality certifications.",
+                partnersTitle: "Trusted Brands & Partners", partnersSub: "Global enterprises that rely on our supply quality day in, day out.",
+                ctaTitle: "Ready to Source With Confidence?", ctaDesc: "Join hundreds of enterprise clients across the globe who trust Global Foods Co. for their wholesale food supply requirements.", ctaBtn: "Get In Touch Today",
+                footer: "© 2026 Global Foods Co. All Rights Reserved."
+            },
+            ar: {
+                logo: "الأطعمة العالمية",
+                home: "الرئيسية", about: "من نحن", services: "خدماتنا", products: "منتجاتنا", contact: "الاتصال",
+                langBtn: "EN 🇬🇧",
+                heroTitle: "نبذة عن شركة الأطعمة العالمية",
+                heroDesc: "عقود من الثقة والابتكار والزراعة المستدامة — ندعم سلاسل التوريد الغذائي العالمية.",
+                storyTitle: "قصتنا", storySub: "من تاجر حبوب إقليمي إلى قوة عظمى في الاستثمار الزراعي العالمي.",
+                storyH3: "مبنيون على الثقة، مدفوعون بالجودة",
+                storyP1: "أُسِّست شركة الأطعمة العالمية برؤية واحدة: أن تكون الاسم الأكثر موثوقية في تجارة الأغذية الدولية والاستثمارات الزراعية. بدأنا من شبكة موردي حبوب معتمدين في جنوب آسيا، وتوسعنا لتشمل عملياتنا أكثر من 25 دولة عبر 4 قارات.",
+                storyQuote: '"أساسنا الجودة. وعدنا الموثوقية. مهمتنا التغذية."',
+                storyP2: "على مر السنين، استثمرنا بكثافة في البنية التحتية للمعالجة، وخدمات الخدمات اللوجستية للتبريد، وشراكات الزراعة المستدامة. واليوم نتعامل مع أكثر من 150,000 طن متري من السلع الغذائية الفاخرة سنوياً.",
+                storyBtn: "شاركنا",
+                riceDesc: "صادراتنا الرئيسية — أرز البرياني العطري طويل الحبة المستخرج من أفضل حقول جنوب الهند. يُنضج لفترة مثالية، كل حبة تحافظ على شكلها في الطهي البطيء، مما يمنحها الأرومة والنكهة الأصيلة التي تُميز بريانياً ذا مستوى عالمي.",
+                st1: "دولة نخدمها", st2: "طن متري / سنوياً", st3: "سنة من العمليات", st4: "عميل مؤسسي",
+                mvvTitle: "رسالتنا ورؤيتنا وقيمنا", mvvSub: "المبادئ التي تُرشد كل شحنة، كل شراكة، كل موسم حصاد.",
+                mv1Title: "رسالتنا", mv1Desc: "توريد السلع الغذائية الفاخرة ومعالجتها وتسليمها وفق معايير جودة راسخة، بما يربط المزارع العالمية بالمجتمعات المحلية بكفاءة واستدامة.",
+                mv2Title: "رؤيتنا", mv2Desc: "أن نكون المؤسسة التجارية الزراعية الغذائية الأكثر موثوقية في العالم، نبني كوكباً أكثر صحة من خلال التوريد المسؤول ومعالجة صفرية للنفايات وسلاسل توريد شفافة.",
+                mv3Title: "قيمنا", mv3Desc: "النزاهة في كل عقد. الابتكار في كل عملية. الاستدامة في كل حقل. نقف إلى جانب شركائنا ومزارعينا والمجتمعات التي نُغذيها — دائماً.",
+                tlTitle: "مسيرتنا", tlSub: "المحطات الرئيسية التي شكّلت شركة الأطعمة العالمية إلى ما هي عليه اليوم.",
+                tl1Year: "٢٠٠٦", tl1Title: "تأسيس الشركة", tl1Desc: "تأسست شركة الأطعمة العالمية في الرياض مع التركيز على استيراد الأرز الفاخر والحبوب من جنوب آسيا.",
+                tl2Year: "٢٠١٠", tl2Title: "أول مطحنة معالجة", tl2Desc: "أطلقنا أول منشأة طحن وتعبئة مخصصة لنا، وحصلنا على شهادتي ISO 22000 وHACCP.",
+                tl3Year: "٢٠١٤", tl3Title: "التوسع الخليجي", tl3Desc: "توسعنا في شبكة التوزيع عبر دول مجلس التعاون الخليجي، وشراكتنا مع كبرى سلاسل الهايبرماركت.",
+                tl4Year: "٢٠١٨", tl4Title: "مبادرة الزراعة البيئية", tl4Desc: "أطلقنا برنامج الزراعة الزراعية المستدامة لدعم أكثر من 1200 مزارع صغير بمدخلات عضوية حيوية.",
+                tl5Year: "٢٠٢٢", tl5Title: "مركز الخدمات اللوجستية العالمي", tl5Desc: "افتتحنا مركزاً لوجستياً متكاملاً براً وبحراً وجواً يُمكّن التسليم المباشر لأكثر من 25 دولة.",
+                tl6Year: "٢٠٢٦", tl6Title: "منصة التجارة الرقمية", tl6Desc: "أطلقنا بوابة B2B المملوكة للعملاء المؤسسيين لتبسيط الشراء والتتبع وضمان الجودة.",
+                teamTitle: "أعضاء مجلس الإدارة", teamSub: "القيادة الإستراتيجية التي توجه عملياتنا الغذائية العالمية نحو الأمام.",
+                tm1Name: "طارق المحيدب", tm1Pos: "رئيس مجلس الإدارة / العضو المنتدب", tm1Bio: "بأكثر من 20 عاماً في تجارة السلع الدولية، بنى طارق الأطعمة العالمية من مستوردة إقليمية إلى علامة تجارية مؤسسية معترف بها عالمياً.",
+                tm2Name: "فيصل محراب", tm2Pos: "الرئيس التنفيذي للعمليات", tm2Bio: "يشرف فيصل على جميع عمليات المعالجة واللوجستيات ومراقبة الجودة عبر منشآتنا العالمية لضمان معايير تسليم لا تقبل المساومة.",
+                tm3Name: "سارة النافع", tm3Pos: "مديرة الاستثمارات العالمية", tm3Bio: "تقود سارة محفظتنا الاستثمارية الزراعية عبر 4 قارات، وتقود شراكات الزراعة المستدامة والاتفاقيات التجارية المؤسسية.",
+                certTitle: "المعايير والشهادات العالمية", certSub: "كل منتج نسلّمه مدعوم بشهادات جودة معترف بها دولياً.",
+                partnersTitle: "العلامات التجارية والشركاء الموثوقون", partnersSub: "مؤسسات عالمية تعتمد على جودة توريدنا يومياً.",
+                ctaTitle: "هل أنت مستعد للتوريد بثقة؟", ctaDesc: "انضم إلى مئات العملاء المؤسسيين حول العالم الذين يثقون بشركة الأطعمة العالمية لمتطلباتهم من الأغذية بالجملة.", ctaBtn: "تواصل معنا اليوم",
+                footer: "© 2026 شركة الأطعمة العالمية. جميع الحقوق محفوظة."
+            }
+        };
+
+        let currentLang = 'en';
+
+        function applyLang(lang) {
+            const t = data[lang];
+            document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            document.documentElement.lang = lang;
+            const ids = ['logoText','navHome','navAbout','navServices','navProducts','navContact','langBtn',
+                'heroTitle','heroDesc','storyTitle','storySub','storyH3','storyP1','storyQuote','storyP2','storyBtn',
+                'riceDesc',
+                'st1','st2','st3','st4',
+                'mvvTitle','mvvSub','mv1Title','mv1Desc','mv2Title','mv2Desc','mv3Title','mv3Desc',
+                'tlTitle','tlSub',
+                'tl1Year','tl1Title','tl1Desc','tl2Year','tl2Title','tl2Desc',
+                'tl3Year','tl3Title','tl3Desc','tl4Year','tl4Title','tl4Desc',
+                'tl5Year','tl5Title','tl5Desc','tl6Year','tl6Title','tl6Desc',
+                'teamTitle','teamSub',
+                'tm1Name','tm1Pos','tm1Bio','tm2Name','tm2Pos','tm2Bio','tm3Name','tm3Pos','tm3Bio',
+                'certTitle','certSub','partnersTitle','partnersSub',
+                'ctaTitle','ctaDesc','ctaBtn','footerText'
+            ];
+            ids.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && t[id] !== undefined) {
+                    if (id === 'logoText') {
+                        el.innerHTML = `<i class="fas fa-seedling"></i> ${t[id]}`;
+                    } else {
+                        el.innerText = t[id];
+                    }
+                }
+            });
+            const navMenu = document.getElementById('navLinks');
+            const menuIconElem = document.getElementById('menuIcon');
+            if (navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                menuIconElem.classList.replace('fa-times', 'fa-bars');
+            }
+            revealSections();
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            applyLang(currentLang);
+        }
+    </script>
+
+</body>
+</html>

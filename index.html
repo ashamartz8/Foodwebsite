@@ -353,6 +353,10 @@
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
             transition: var(--transition-default);
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            color: inherit;
         }
 
         .card:hover {
@@ -387,6 +391,133 @@
             font-size: 14px;
             color: #5f6c7a;
         }
+
+        /* ── RICE HIGHLIGHT BANNER ── */
+        .rice-highlight {
+            width: 100%;
+            background: linear-gradient(135deg, #0b5345 0%, #117a65 40%, #1a8a72 60%, #0b5345 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .rice-highlight::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+            opacity: 0.12;
+        }
+        .rice-highlight-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 70px 5%;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+        .rice-badge-side {
+            flex: 1;
+            min-width: 260px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 18px;
+        }
+        .rice-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(212,172,13,0.18);
+            border: 1px solid rgba(212,172,13,0.5);
+            color: var(--secondary-color);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 30px;
+        }
+        .rice-main-title {
+            font-size: clamp(30px, 5vw, 52px);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+        }
+        .rice-main-title span {
+            color: var(--secondary-color);
+            display: block;
+        }
+        .rice-desc-text {
+            color: rgba(255,255,255,0.82);
+            font-size: 15px;
+            line-height: 1.8;
+            max-width: 480px;
+        }
+        .rice-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .rice-pill {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 5px 14px;
+            border-radius: 20px;
+        }
+        .rice-pill i { color: var(--secondary-color); margin-right: 5px; }
+        .rice-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--secondary-color);
+            color: #000;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 13px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            transition: var(--transition-default);
+        }
+        .rice-cta:hover {
+            background: #fff;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        }
+        .rice-img-side {
+            flex: 1;
+            min-width: 260px;
+            position: relative;
+        }
+        .rice-dot { position: absolute; border-radius: 50%; background: rgba(212,172,13,0.15); }
+        .rice-dot-1 { width: 160px; height: 160px; top: -40px; right: -40px; }
+        .rice-dot-2 { width: 80px; height: 80px; bottom: 20px; left: -20px; background: rgba(255,255,255,0.06); }
+        .rice-img-frame {
+            position: relative;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+        }
+        .rice-img-frame img {
+            width: 100%; height: 380px; object-fit: cover; display: block;
+            transition: transform 0.5s ease;
+        }
+        .rice-img-frame:hover img { transform: scale(1.04); }
+        .rice-img-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 30px 24px 22px;
+        }
+        .rice-img-label { color: #fff; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.9; }
+        .rice-star-row { display: flex; gap: 3px; margin-top: 5px; }
+        .rice-star-row i { color: var(--secondary-color); font-size: 13px; }
 
         /* eco container */
         .eco-container {
@@ -780,6 +911,9 @@
             .testi-card {
                 padding: 24px 20px;
             }
+
+            .rice-highlight-inner { flex-direction: column; padding: 50px 5%; gap: 36px; }
+            .rice-img-frame img { height: 260px; }
         }
 
         @media (max-width: 480px) {
@@ -822,11 +956,11 @@
                 <i class="fas fa-bars" id="menuIcon"></i>
             </div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home" id="navHome">Home</a></li>
-                <li><a href="#about" id="navAbout">About Us</a></li>
+                <li><a href="index.html" class="active-page" id="navHome">Home</a></li>
+                <li><a href="About.html" id="navAbout">About Us</a></li>
                 <li><a href="#services" id="navServices">Services</a></li>
                 <li><a href="products.html" id="navProducts">Products</a></li>
-                <li><a href="#contact" id="navContact">Contact</a></li>
+                <li><a href="contact.html" id="navContact">Contact</a></li>
                 <li><a href="javascript:void(0)" class="lang-btn" onclick="toggleLanguage()" id="langBtn">AR 🇸🇦</a>
                 </li>
             </ul>
@@ -933,53 +1067,92 @@
             <h2 class="section-title" id="prodTitle">Our Featured Products</h2>
             <p class="section-subtitle" id="prodSub">Sourced directly from certified international farmlands.</p>
             <div class="grid">
-                <div class="card">
+                <a href="products.html" class="card">
                     <div class="card-img-wrapper"><img
                             src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=500&q=80"
                             alt="Rice"></div>
                     <h3 id="p1Title">Premium Rice</h3>
                     <p id="p1Desc">High-quality aromatic basmati and long-grain rice processed meticulously.</p>
-                </div>
-                <div class="card">
+                </a>
+                <a href="products.html" class="card">
                     <div class="card-img-wrapper"><img
                             src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=500&q=80"
                             alt="Spices"></div>
                     <h3 id="p2Title">Pure Spices</h3>
                     <p id="p2Desc">Authentic and unadulterated ground spices to enrich multi-cuisine culinary
                         experiences.</p>
-                </div>
-                <div class="card">
+                </a>
+                <a href="products.html" class="card">
                     <div class="card-img-wrapper"><img
                             src="https://images.unsplash.com/photo-1574316071802-0d684efa7bf5?auto=format&fit=crop&w=500&q=80"
                             alt="Pulses"></div>
                     <h3 id="p3Title">Pulses & Grains</h3>
                     <p id="p3Desc">Nutritious legumes, pulses, and vital grains packaged under zero human touch.</p>
-                </div>
-                <div class="card">
+                </a>
+                <a href="products.html" class="card">
                     <div class="card-img-wrapper"><img
                             src="https://images.unsplash.com/photo-1546964124-0cce460f38ef?auto=format&fit=crop&w=500&q=80"
                             alt="Dates"></div>
                     <h3 id="p4Title">Premium Dates & Nuts</h3>
                     <p id="p4Desc">Hand-picked golden dates and fresh crisp nuts premium graded for global exports.</p>
-                </div>
-                <div class="card">
+                </a>
+                <a href="products.html" class="card">
                     <div class="card-img-wrapper"><img
                             src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=500&q=80"
                             alt="Lentils"></div>
                     <h3 id="p5Title">Organic Lentils</h3>
                     <p id="p5Desc">Naturally dried high-protein lentils sorted with advanced laser color sorting tech.
                     </p>
-                </div>
-                <div class="card">
+                </a>
+                <a href="products.html" class="card">
                     <div class="card-img-wrapper"><img
                             src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=500&q=80"
                             alt="Oils"></div>
                     <h3 id="p6Title">Premium Cold-Pressed Oils</h3>
                     <p id="p6Desc">Pure edible sunflowers and olive seed extractions preserved perfectly under low
                         temperature loops.</p>
-                </div>
+                </a>
             </div>
         </section>
+    </div>
+
+    <!-- ── RICE HIGHLIGHT ── -->
+    <div class="rice-highlight reveal">
+        <div class="rice-highlight-inner">
+            <div class="rice-badge-side">
+                <div class="rice-tag"><i class="fas fa-star"></i> Signature Product</div>
+                <h2 class="rice-main-title">
+                    Indian Classic
+                    <span>Biriyani Rice</span>
+                </h2>
+                <p class="rice-desc-text" id="riceDesc">
+                    Our flagship export — long-grain, aromatic Biryani Rice sourced from the finest paddies of South India. Aged to perfection, each grain holds its form through slow-cooking, delivering the authentic flavour and fragrance that defines a world-class biryani.
+                </p>
+                <div class="rice-pills">
+                    <span class="rice-pill"><i class="fas fa-check"></i>Extra Long Grain</span>
+                    <span class="rice-pill"><i class="fas fa-check"></i>Low GI</span>
+                    <span class="rice-pill"><i class="fas fa-check"></i>100% Halal</span>
+                    <span class="rice-pill"><i class="fas fa-check"></i>ISO Certified</span>
+                    <span class="rice-pill"><i class="fas fa-check"></i>Aged 12 Months</span>
+                </div>
+                <a href="products.html" class="rice-cta">
+                    <i class="fas fa-arrow-right"></i> Explore Full Range
+                </a>
+            </div>
+            <div class="rice-img-side">
+                <div class="rice-dot rice-dot-1"></div>
+                <div class="rice-dot rice-dot-2"></div>
+                <div class="rice-img-frame">
+                    <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=700&q=80" alt="Indian Classic Biriyani Rice">
+                    <div class="rice-img-overlay">
+                        <div class="rice-img-label">Indian Classic Biriyani Rice</div>
+                        <div class="rice-star-row">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <section id="sustainability" class="reveal">
@@ -1213,9 +1386,9 @@
         function revealSections() { document.querySelectorAll('.reveal').forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight - 60) el.classList.add('active'); }); }
         window.addEventListener('scroll', revealSections); window.addEventListener('load', revealSections);
 
-        const data = { en: { logo: "Global Foods", home: "Home", about: "About Us", services: "Services", products: "Products", contact: "Contact", heroTitle: "Premium Quality Food Products", heroDesc: "Bringing the finest grains, agricultural investments, and world-class supply chains from global markets to your doorstep.", heroBtn: "Explore Products", aboutTitle: "About Us", aboutSub: "Decades of trust, delivering health and high-quality nourishment worldwide.", aboutH3: "Global Standards, Trusted Partnerships", aboutP1: "With deep roots in food trading and sustainable agricultural investments, we specialize in sourcing premier food items. Mirroring industry giants, we maintain ultimate control over processing, safety, and delivery operations.", aboutP2: "Our vision is to bridge nations through premium quality grains, essential foods, and reliable business partnerships that stand the test of time.", stat1Text: "Countries", stat2Text: "Tons / Year", stat3Text: "Pure Quality", infraTitle: "Global Infrastructure", infraSub: "Advanced sorting units and world-class shipping centers handling premium products.", inf1: "Logistics & Hubs", inf2: "Processing Mills", inf3: "Testing Laboratories", servTitle: "Core Investments & Operations", servSub: "We handle everything from farm infrastructure to supply chains.", s1Title: "Agricultural Farming", s1Desc: "Investing in global standard tech-farms to produce rich, organic, and nutritious crops.", s2Title: "Advanced Processing", s2Desc: "State-of-the-art packaging and milling facilities that secure food hygiene.", s3Title: "Global Logistics", s3Desc: "An integrated supply chain networking safely via sea, land, and air delivery.", prodTitle: "Our Featured Products", prodSub: "Sourced directly from certified international farmlands.", p1Title: "Premium Rice", p1Desc: "High-quality aromatic basmati and long-grain rice processed meticulously.", p2Title: "Pure Spices", p2Desc: "Authentic and unadulterated ground spices to enrich multi-cuisine culinary experiences.", p3Title: "Pulses & Grains", p3Desc: "Nutritious legumes, pulses, and vital grains packaged under zero human touch.", p4Title: "Premium Dates & Nuts", p4Desc: "Hand-picked golden dates and fresh crisp nuts premium graded for global exports.", p5Title: "Organic Lentils", p5Desc: "Naturally dried high-protein lentils sorted with advanced laser color sorting tech.", p6Title: "Premium Cold-Pressed Oils", p6Desc: "Pure edible sunflowers and olive seed extractions preserved perfectly under low temperature loops.", ecoTitle: "Eco Farming & Sustainability", ecoSub: "Preserving nature while securing human health through green supply methods.", ecoH3: "Responsible Agro-Farming Footprint", ecoP1: "We prioritize chemical-free production methodologies. By empowering small farmers with modern bio-organic nutrients and low emission drip irrigation tech, we cultivate health alongside raw trade outputs.", ecoP2: "Every logistics partner inside our grid strictly adheres to environmental protective guidelines to guarantee zero trace contamination across global channels.", teamTitle: "Executive Board", teamSub: "The strategic leadership steering our global food operations forward.", tm1Name: "Tariq Al-Muhaidib", tm1Pos: "Chairman / Managing Director", tm2Name: "Faisal Mehrab", tm2Pos: "Chief Operations Officer", tm3Name: "Sarah Al-Nafea", tm3Pos: "Director of Global Investments", testiTitle: "Global Client Reviews", testiSub: "What hypermarket groups and state distribution partners say about us.", t1Text: '"Global Foods Co. consistently fulfills supply quotas without single delayed container. Their long grain rice processing standard meets strict GCC retail protocols perfectly."', t1Name: "Ahmed Al-Saeed", t1Comp: "Procurement VP, Al-Raya Hypermarkets", t2Text: '"Their unadulterated spice chain quality control sets a blueprint. Our food processing units secure highest yield outputs utilizing raw stocks bought from them."', t2Name: "Elena Rostova", t2Comp: "Supply Quality Manager, EuroFood Hub", faqTitle: "Frequently Asked Questions", faqSub: "Quick answers regarding business operations and bulk sourcing.", q1: "What is the minimum wholesale order capacity?", a1: "We primarily trade in commercial bulk shipments. Minimum orders depend on product categories, usually starting from 1 FCL.", q2: "Where do you source your premium grains from?", a2: "Our agro-investments and farming contracts span over premium zones in India, Pakistan, Southeast Asia, and South America.", q3: "What quality certifications do your processing hubs maintain?", a3: "All our mills and handling warehouses possess absolute international compliance certifications, matching ISO 22000, HACCP standards, and certified 100% Halal protocols.", q4: "Do you provide customized retail packaging options?", a4: "Yes, for large commercial hypermarket enterprise networks, we execute private contract white-labeling packaging under custom specifications inside automated safety loops.", certTitle: "Certified Global Standards", contactTitle: "Contact Us", contactSub: "Let's discuss how we can cater to your wholesale food supply demands.", infoTitle: "Get In Touch", infoAddr: "Corporate HQ: Olaya Tower B, Level 18, Riyadh, Kingdom of Saudi Arabia", formName: "Full Name / Company Name", formEmail: "Corporate Email Address", optDefault: "Select Department", optWholesale: "Wholesale Bulk Sourcing", optInvest: "Agro-Investments & Partnership", optLogistics: "Supply Chain & Logistics", formMsg: "Describe your container requirements or contract profile...", formBtn: "Submit Procurement Intent", footer: "© 2026 Global Foods Co. All Rights Reserved.", langBtn: "AR 🇸🇦" }, ar: { logo: "الأطعمة العالمية", home: "الرئيسية", about: "من نحن", services: "خدماتنا", products: "منتجاتنا", contact: "الاتصال", heroTitle: "منتجات غذائية عالية الجودة", heroDesc: "جلب أفضل الحبوب والاستثمارات الزراعية وسلاسل التوريد ذات المستوى العالمي من الأسواق العالمية إلى عتبة داركم.", heroBtn: "اكتشف المنتجات", aboutTitle: "من نحن", aboutSub: "عقود من الثقة، نقدم الصحة والغذاء عالي الجودة في جميع أنحاء العالم.", aboutH3: "معايير عالمية، شراكات موثوقة", aboutP1: "مع جذور عميقة في تجارة الأغذية والاستثمارات الزراعية المستدامة، نحن متخصصون في توريد المواد الغذائية الممتازة. ومثل الشركات العملاقة في هذا المجال، فإننا نحافظ على السيطرة الكاملة على عمليات المعالجة والسلامة والتسليم.", aboutP2: "رؤيتنا هي بناء جسور بين الدول من خلال الحبوب عالية الجودة والأغذية الأساسية والشراكات التجارية الموثوقة التي تصمد أمام اختبار الزمن.", stat1Text: "دولة", stat2Text: "طن / سنوياً", stat3Text: "جودة نقية", infraTitle: "البنية التحتية العالمية", infraSub: "وحدات فرز متقدمة ومراكز شحن ذات مستوى عالمي تتعامل مع المنتجات الممتازة.", inf1: "الخدمات اللوجستية والمراكز", inf2: "مطاحن المعالجة", inf3: "مختبرات الجودة", servTitle: "الاستثمارات والعمليات الأساسية", servSub: "نحن ندير كل شيء من البنية التحتية للمزارع إلى سلاسل التوريد.", s1Title: "الزراعة التكنولوجية", s1Desc: "الاستثمار في مزارع تكنولوجية ذات معايير عالمية لإنتاج محاصيل غنية وعضوية ومغذية.", s2Title: "معالجة متقدمة", s2Desc: "مرافق التعبئة والتغليف والطحن الحديثة التي تضمن سلامة الأغذية ونظافتها.", s3Title: "الخدمات اللوجستية العالمية", s3Desc: "سلسلة توريد متكاملة تعمل بأمان عبر الشحن البحري والبري والجوي.", prodTitle: "منتجاتنا المتميزة", prodSub: "مستوردة مباشرة من أراضٍ زراعية دولية معتمدة.", p1Title: "أرز ممتاز", p1Desc: "أرز بسمتي عطري عالي الجودة وطويل الحبة تمت معالجته بدقة وعناية.", p2Title: "توابل نقية", p2Desc: "توابل مطحونة أصيلة وغير مغشوشة لإثراء تجارب الطهي المتعددة.", p3Title: "البقوليات والحبوب", p3Desc: "بقوليات مغذية وحبوب حيوية معبأة بدون أي تدخل بشري لضمان النظافة.", p4Title: "تمور ومكسرات فاخرة", p4Desc: "تمور ذهبية منتقاة بعناية ومكسرات طازجة ومقرمشة مصنفة للتصدير العالمي.", p5Title: "عدس عضوي", p5Desc: "عدس عالي البروتين مجفف طبيعياً ومفرز بأحدث تقنيات الفرز اللوني بالليزر.", p6Title: "زيوت معصورة على البارد", p6Desc: "مستخلصات بذور الزيتون وعباد الشمس الصالحة للأكل والنقية المحفوظة تماماً في حلقات درجات حرارة منخفضة.", ecoTitle: "الزراعة البيئية والاستدامة", ecoSub: "الحفاظ على الطبيعة مع تأمين الصحة البشرية من خلال أساليب الإمداد الأخضر.", ecoH3: "بصمة مسؤولة في الإنتاج الزراعي", ecoP1: "نحن نضع الأولوية لمنهجيات الإنتاج الخالية من الكيماويات. من خلال تمكين المزارعين الصغار بالمغذيات العضوية الحيوية وتقنيات الري بالتنقيط منخفضة الانبعاثات.", ecoP2: "يلتزم كل شريك لوجستي في شبكتنا بصرامة بالإرشادات البيئية لضمان عدم حدوث أي تلوث عبر القنوات العالمية.", teamTitle: "أعضاء مجلس الإدارة", teamSub: "القيادة الإستراتيجية التي توجه عملياتنا الغذائية العالمية نحو الأمام.", tm1Name: "طارق المحيدب", tm1Pos: "رئيس مجلس الإدارة / العضو المنتدب", tm2Name: "فيصل محراب", tm2Pos: "الرئيس التنفيذي للعمليات", tm3Name: "سارة النافع", tm3Pos: "مديرة الاستثمارات العالمية", testiTitle: "شهادات عملائنا العالميين", testiSub: "ماذا يقول شركاء التوزيع وسلاسل الهايبرماركت الكبرى عن خدماتنا.", t1Text: '"تلتزم شركة الأغذية العالمية دائمًا بتلبية حصص التوريد دون تأخير أي حاوية. معايير معالجة الأرز لديهم تطابق تمامًا بروتوكولات التجزئة الصارمة في الخليج."', t1Name: "أحمد السعيد", t1Comp: "نائب رئيس المشتريات، أسواق الراية", t2Text: '"إن مراقبة الجودة لديهم في سلسلة التوابل النقية تعد نموذجاً يحتذى به. تحقق مصانعنا أعلى عوائد إنتاجية بفضل المواد الخام المستوردة منهم."', t2Name: "إيلينا روستوفا", t2Comp: "مديرة جودة التوريد، المركز الأوروبي للأغذية", faqTitle: "الأسئلة الشائعة", faqSub: "إجابات سريعة بخصوص العمليات التجارية والتوريد بالجملة.", q1: "ما هو الحد الأدنى لسعة طلبات الجملة؟", a1: "نحن نتاجر بشكل أساسي في الشحنات التجارية الضخمة. يعتمد الحد الأدنى للطلبات على فئات المنتجات، وعادة ما يبدأ من حاوية كاملة واحدة FCL.", q2: "من أين تستوردون حبوبكم الفاخرة؟", a2: "تمتد استثماراتنا الزراعية وعقودنا مزارعنا عبر مناطق متميزة في الهند وباكستان وجنوب شرق آسيا وأمريكا الجنوبية.", q3: "ما هي شهادات الجودة التي تحافظ عليها مراكز المعالجة لديك؟", a3: "تضم جميع مطاحننا ومستودعات المناولة شهادات امتثال دولية كاملة، مطابقة للمواصفات القياسية ISO 22000، ونظم HACCP، والشهادات المعتمدة الحلال بنسبة 100%.", q4: "هل توفرون خيارات تعبئة وتغليف مخصصة للبيع بالتجزئة؟", a4: "نعم، لشبكات المؤسسات الكبرى، نحن ننفذ تعبئة مخصصة (Private Labeling) حسب المواصفات المطلوبة داخل خطوط آلية معقمة بالكامل.", certTitle: "المعايير والشهادات العالمية", contactTitle: "اتصل بنا", contactSub: "دعنا نناقش كيف يمكننا تلبية طلباتك من الأغذية بالجملة.", infoTitle: "تواصل معنا", infoAddr: "المقر الرئيسي: برج العليا ب، الدور 18، الرياض، المملكة العربية السعودية", formName: "الاسم الكامل / اسم الشركة", formEmail: "البريد الإلكتروني للشركة", optDefault: "حدد القسم المختص", optWholesale: "توريد الشحنات والكميات الضخمة", optInvest: "الاستثمارات الزراعية والشراكات", optLogistics: "سلاسل الإمداد والخدمات اللوجستية", formMsg: "يرجى كتابة تفاصيل متطلبات الشحن وحجم الحاويات المطلوبة...", formBtn: "إرسال طلب الشراء التجاري", footer: "© 2026 شركة الأطعمة العالمية. جميع الحقوق محفوظة.", langBtn: "EN 🇬🇧" } };
+        const data = { en: { logo: "Global Foods", home: "Home", about: "About Us", services: "Services", products: "Products", contact: "Contact", heroTitle: "Premium Quality Food Products", heroDesc: "Bringing the finest grains, agricultural investments, and world-class supply chains from global markets to your doorstep.", heroBtn: "Explore Products", aboutTitle: "About Us", aboutSub: "Decades of trust, delivering health and high-quality nourishment worldwide.", aboutH3: "Global Standards, Trusted Partnerships", aboutP1: "With deep roots in food trading and sustainable agricultural investments, we specialize in sourcing premier food items. Mirroring industry giants, we maintain ultimate control over processing, safety, and delivery operations.", aboutP2: "Our vision is to bridge nations through premium quality grains, essential foods, and reliable business partnerships that stand the test of time.", stat1Text: "Countries", stat2Text: "Tons / Year", stat3Text: "Pure Quality", infraTitle: "Global Infrastructure", infraSub: "Advanced sorting units and world-class shipping centers handling premium products.", inf1: "Logistics & Hubs", inf2: "Processing Mills", inf3: "Testing Laboratories", servTitle: "Core Investments & Operations", servSub: "We handle everything from farm infrastructure to supply chains.", s1Title: "Agricultural Farming", s1Desc: "Investing in global standard tech-farms to produce rich, organic, and nutritious crops.", s2Title: "Advanced Processing", s2Desc: "State-of-the-art packaging and milling facilities that secure food hygiene.", s3Title: "Global Logistics", s3Desc: "An integrated supply chain networking safely via sea, land, and air delivery.", prodTitle: "Our Featured Products", prodSub: "Sourced directly from certified international farmlands.", p1Title: "Premium Rice", p1Desc: "High-quality aromatic basmati and long-grain rice processed meticulously.", p2Title: "Pure Spices", p2Desc: "Authentic and unadulterated ground spices to enrich multi-cuisine culinary experiences.", p3Title: "Pulses & Grains", p3Desc: "Nutritious legumes, pulses, and vital grains packaged under zero human touch.", p4Title: "Premium Dates & Nuts", p4Desc: "Hand-picked golden dates and fresh crisp nuts premium graded for global exports.", p5Title: "Organic Lentils", p5Desc: "Naturally dried high-protein lentils sorted with advanced laser color sorting tech.", p6Title: "Premium Cold-Pressed Oils", p6Desc: "Pure edible sunflowers and olive seed extractions preserved perfectly under low temperature loops.", riceDesc: "Our flagship export — long-grain, aromatic Biryani Rice sourced from the finest paddies of South India. Aged to perfection, each grain holds its form through slow-cooking, delivering the authentic flavour and fragrance that defines a world-class biryani.", ecoTitle: "Eco Farming & Sustainability", ecoSub: "Preserving nature while securing human health through green supply methods.", ecoH3: "Responsible Agro-Farming Footprint", ecoP1: "We prioritize chemical-free production methodologies. By empowering small farmers with modern bio-organic nutrients and low emission drip irrigation tech, we cultivate health alongside raw trade outputs.", ecoP2: "Every logistics partner inside our grid strictly adheres to environmental protective guidelines to guarantee zero trace contamination across global channels.", teamTitle: "Executive Board", teamSub: "The strategic leadership steering our global food operations forward.", tm1Name: "Tariq Al-Muhaidib", tm1Pos: "Chairman / Managing Director", tm2Name: "Faisal Mehrab", tm2Pos: "Chief Operations Officer", tm3Name: "Sarah Al-Nafea", tm3Pos: "Director of Global Investments", testiTitle: "Global Client Reviews", testiSub: "What hypermarket groups and state distribution partners say about us.", t1Text: '"Global Foods Co. consistently fulfills supply quotas without single delayed container. Their long grain rice processing standard meets strict GCC retail protocols perfectly."', t1Name: "Ahmed Al-Saeed", t1Comp: "Procurement VP, Al-Raya Hypermarkets", t2Text: '"Their unadulterated spice chain quality control sets a blueprint. Our food processing units secure highest yield outputs utilizing raw stocks bought from them."', t2Name: "Elena Rostova", t2Comp: "Supply Quality Manager, EuroFood Hub", faqTitle: "Frequently Asked Questions", faqSub: "Quick answers regarding business operations and bulk sourcing.", q1: "What is the minimum wholesale order capacity?", a1: "We primarily trade in commercial bulk shipments. Minimum orders depend on product categories, usually starting from 1 FCL.", q2: "Where do you source your premium grains from?", a2: "Our agro-investments and farming contracts span over premium zones in India, Pakistan, Southeast Asia, and South America.", q3: "What quality certifications do your processing hubs maintain?", a3: "All our mills and handling warehouses possess absolute international compliance certifications, matching ISO 22000, HACCP standards, and certified 100% Halal protocols.", q4: "Do you provide customized retail packaging options?", a4: "Yes, for large commercial hypermarket enterprise networks, we execute private contract white-labeling packaging under custom specifications inside automated safety loops.", certTitle: "Certified Global Standards", contactTitle: "Contact Us", contactSub: "Let's discuss how we can cater to your wholesale food supply demands.", infoTitle: "Get In Touch", infoAddr: "Corporate HQ: Olaya Tower B, Level 18, Riyadh, Kingdom of Saudi Arabia", formName: "Full Name / Company Name", formEmail: "Corporate Email Address", optDefault: "Select Department", optWholesale: "Wholesale Bulk Sourcing", optInvest: "Agro-Investments & Partnership", optLogistics: "Supply Chain & Logistics", formMsg: "Describe your container requirements or contract profile...", formBtn: "Submit Procurement Intent", footer: "© 2026 Global Foods Co. All Rights Reserved.", langBtn: "AR 🇸🇦" }, ar: { logo: "الأطعمة العالمية", home: "الرئيسية", about: "من نحن", services: "خدماتنا", products: "منتجاتنا", contact: "الاتصال", heroTitle: "منتجات غذائية عالية الجودة", heroDesc: "جلب أفضل الحبوب والاستثمارات الزراعية وسلاسل التوريد ذات المستوى العالمي من الأسواق العالمية إلى عتبة داركم.", heroBtn: "اكتشف المنتجات", aboutTitle: "من نحن", aboutSub: "عقود من الثقة، نقدم الصحة والغذاء عالي الجودة في جميع أنحاء العالم.", aboutH3: "معايير عالمية، شراكات موثوقة", aboutP1: "مع جذور عميقة في تجارة الأغذية والاستثمارات الزراعية المستدامة، نحن متخصصون في توريد المواد الغذائية الممتازة. ومثل الشركات العملاقة في هذا المجال، فإننا نحافظ على السيطرة الكاملة على عمليات المعالجة والسلامة والتسليم.", aboutP2: "رؤيتنا هي بناء جسور بين الدول من خلال الحبوب عالية الجودة والأغذية الأساسية والشراكات التجارية الموثوقة التي تصمد أمام اختبار الزمن.", stat1Text: "دولة", stat2Text: "طن / سنوياً", stat3Text: "جودة نقية", infraTitle: "البنية التحتية العالمية", infraSub: "وحدات فرز متقدمة ومراكز شحن ذات مستوى عالمي تتعامل مع المنتجات الممتازة.", inf1: "الخدمات اللوجستية والمراكز", inf2: "مطاحن المعالجة", inf3: "مختبرات الجودة", servTitle: "الاستثمارات والعمليات الأساسية", servSub: "نحن ندير كل شيء من البنية التحتية للمزارع إلى سلاسل التوريد.", s1Title: "الزراعة التكنولوجية", s1Desc: "الاستثمار في مزارع تكنولوجية ذات معايير عالمية لإنتاج محاصيل غنية وعضوية ومغذية.", s2Title: "معالجة متقدمة", s2Desc: "مرافق التعبئة والتغليف والطحن الحديثة التي تضمن سلامة الأغذية ونظافتها.", s3Title: "الخدمات اللوجستية العالمية", s3Desc: "سلسلة توريد متكاملة تعمل بأمان عبر الشحن البحري والبري والجوي.", prodTitle: "منتجاتنا المتميزة", prodSub: "مستوردة مباشرة من أراضٍ زراعية دولية معتمدة.", p1Title: "أرز ممتاز", p1Desc: "أرز بسمتي عطري عالي الجودة وطويل الحبة تمت معالجته بدقة وعناية.", p2Title: "توابل نقية", p2Desc: "توابل مطحونة أصيلة وغير مغشوشة لإثراء تجارب الطهي المتعددة.", p3Title: "البقوليات والحبوب", p3Desc: "بقوليات مغذية وحبوب حيوية معبأة بدون أي تدخل بشري لضمان النظافة.", p4Title: "تمور ومكسرات فاخرة", p4Desc: "تمور ذهبية منتقاة بعناية ومكسرات طازجة ومقرمشة مصنفة للتصدير العالمي.", p5Title: "عدس عضوي", p5Desc: "عدس عالي البروتين مجفف طبيعياً ومفرز بأحدث تقنيات الفرز اللوني بالليزر.", p6Title: "زيوت معصورة على البارد", p6Desc: "مستخلصات بذور الزيتون وعباد الشمس الصالحة للأكل والنقية المحفوظة تماماً في حلقات درجات حرارة منخفضة.", riceDesc: "صادراتنا الرئيسية — أرز البرياني العطري طويل الحبة المستخرج من أفضل حقول جنوب الهند. يُنضج لفترة مثالية، كل حبة تحافظ على شكلها في الطهي البطيء، مما يمنحها الأرومة والنكهة الأصيلة التي تُميز بريانياً ذا مستوى عالمي.", ecoTitle: "الزراعة البيئية والاستدامة", ecoSub: "الحفاظ على الطبيعة مع تأمين الصحة البشرية من خلال أساليب الإمداد الأخضر.", ecoH3: "بصمة مسؤولة في الإنتاج الزراعي", ecoP1: "نحن نضع الأولوية لمنهجيات الإنتاج الخالية من الكيماويات. من خلال تمكين المزارعين الصغار بالمغذيات العضوية الحيوية وتقنيات الري بالتنقيط منخفضة الانبعاثات.", ecoP2: "يلتزم كل شريك لوجستي في شبكتنا بصرامة بالإرشادات البيئية لضمان عدم حدوث أي تلوث عبر القنوات العالمية.", teamTitle: "أعضاء مجلس الإدارة", teamSub: "القيادة الإستراتيجية التي توجه عملياتنا الغذائية العالمية نحو الأمام.", tm1Name: "طارق المحيدب", tm1Pos: "رئيس مجلس الإدارة / العضو المنتدب", tm2Name: "فيصل محراب", tm2Pos: "الرئيس التنفيذي للعمليات", tm3Name: "سارة النافع", tm3Pos: "مديرة الاستثمارات العالمية", testiTitle: "شهادات عملائنا العالميين", testiSub: "ماذا يقول شركاء التوزيع وسلاسل الهايبرماركت الكبرى عن خدماتنا.", t1Text: '"تلتزم شركة الأغذية العالمية دائمًا بتلبية حصص التوريد دون تأخير أي حاوية. معايير معالجة الأرز لديهم تطابق تمامًا بروتوكولات التجزئة الصارمة في الخليج."', t1Name: "أحمد السعيد", t1Comp: "نائب رئيس المشتريات، أسواق الراية", t2Text: '"إن مراقبة الجودة لديهم في سلسلة التوابل النقية تعد نموذجاً يحتذى به. تحقق مصانعنا أعلى عوائد إنتاجية بفضل المواد الخام المستوردة منهم."', t2Name: "إيلينا روستوفا", t2Comp: "مديرة جودة التوريد، المركز الأوروبي للأغذية", faqTitle: "الأسئلة الشائعة", faqSub: "إجابات سريعة بخصوص العمليات التجارية والتوريد بالجملة.", q1: "ما هو الحد الأدنى لسعة طلبات الجملة؟", a1: "نحن نتاجر بشكل أساسي في الشحنات التجارية الضخمة. يعتمد الحد الأدنى للطلبات على فئات المنتجات، وعادة ما يبدأ من حاوية كاملة واحدة FCL.", q2: "من أين تستوردون حبوبكم الفاخرة؟", a2: "تمتد استثماراتنا الزراعية وعقودنا مزارعنا عبر مناطق متميزة في الهند وباكستان وجنوب شرق آسيا وأمريكا الجنوبية.", q3: "ما هي شهادات الجودة التي تحافظ عليها مراكز المعالجة لديك؟", a3: "تضم جميع مطاحننا ومستودعات المناولة شهادات امتثال دولية كاملة، مطابقة للمواصفات القياسية ISO 22000، ونظم HACCP، والشهادات المعتمدة الحلال بنسبة 100%.", q4: "هل توفرون خيارات تعبئة وتغليف مخصصة للبيع بالتجزئة؟", a4: "نعم، لشبكات المؤسسات الكبرى، نحن ننفذ تعبئة مخصصة (Private Labeling) حسب المواصفات المطلوبة داخل خطوط آلية معقمة بالكامل.", certTitle: "المعايير والشهادات العالمية", contactTitle: "اتصل بنا", contactSub: "دعنا نناقش كيف يمكننا تلبية طلباتك من الأغذية بالجملة.", infoTitle: "تواصل معنا", infoAddr: "المقر الرئيسي: برج العليا ب، الدور 18، الرياض، المملكة العربية السعودية", formName: "الاسم الكامل / اسم الشركة", formEmail: "البريد الإلكتروني للشركة", optDefault: "حدد القسم المختص", optWholesale: "توريد الشحنات والكميات الضخمة", optInvest: "الاستثمارات الزراعية والشراكات", optLogistics: "سلاسل الإمداد والخدمات اللوجستية", formMsg: "يرجى كتابة تفاصيل متطلبات الشحن وحجم الحاويات المطلوبة...", formBtn: "إرسال طلب الشراء التجاري", footer: "© 2026 شركة الأطعمة العالمية. جميع الحقوق محفوظة.", langBtn: "EN 🇬🇧" } };
         let currentLang = 'en';
-        function toggleLanguage() { currentLang = currentLang === 'en' ? 'ar' : 'en'; document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr'); document.documentElement.lang = currentLang; const t = data[currentLang]; document.getElementById('logoText').innerHTML = `<i class="fas fa-seedling"></i> ${t.logo}`; document.getElementById('navHome').innerText = t.home; document.getElementById('navAbout').innerText = t.about; document.getElementById('navServices').innerText = t.services; document.getElementById('navProducts').innerText = t.products; document.getElementById('navContact').innerText = t.contact; document.getElementById('langBtn').innerText = t.langBtn; document.getElementById('heroTitle').innerText = t.heroTitle; document.getElementById('heroDesc').innerText = t.heroDesc; document.getElementById('heroBtn').innerText = t.heroBtn; document.getElementById('aboutTitle').innerText = t.aboutTitle; document.getElementById('aboutSub').innerText = t.aboutSub; document.getElementById('aboutH3').innerText = t.aboutH3; document.getElementById('aboutP1').innerText = t.aboutP1; document.getElementById('aboutP2').innerText = t.aboutP2; document.getElementById('stat1Text').innerText = t.stat1Text; document.getElementById('stat2Text').innerText = t.stat2Text; document.getElementById('stat3Text').innerText = t.stat3Text; document.getElementById('infraTitle').innerText = t.infraTitle; document.getElementById('infraSub').innerText = t.infraSub; document.getElementById('inf1').innerText = t.inf1; document.getElementById('inf2').innerText = t.inf2; document.getElementById('inf3').innerText = t.inf3; document.getElementById('servTitle').innerText = t.servTitle; document.getElementById('servSub').innerText = t.servSub; document.getElementById('s1Title').innerText = t.s1Title; document.getElementById('s1Desc').innerText = t.s1Desc; document.getElementById('s2Title').innerText = t.s2Title; document.getElementById('s2Desc').innerText = t.s2Desc; document.getElementById('s3Title').innerText = t.s3Title; document.getElementById('s3Desc').innerText = t.s3Desc; document.getElementById('prodTitle').innerText = t.prodTitle; document.getElementById('prodSub').innerText = t.prodSub; document.getElementById('p1Title').innerText = t.p1Title; document.getElementById('p1Desc').innerText = t.p1Desc; document.getElementById('p2Title').innerText = t.p2Title; document.getElementById('p2Desc').innerText = t.p2Desc; document.getElementById('p3Title').innerText = t.p3Title; document.getElementById('p3Desc').innerText = t.p3Desc; document.getElementById('p4Title').innerText = t.p4Title; document.getElementById('p4Desc').innerText = t.p4Desc; document.getElementById('p5Title').innerText = t.p5Title; document.getElementById('p5Desc').innerText = t.p5Desc; document.getElementById('p6Title').innerText = t.p6Title; document.getElementById('p6Desc').innerText = t.p6Desc; document.getElementById('ecoTitle').innerText = t.ecoTitle; document.getElementById('ecoSub').innerText = t.ecoSub; document.getElementById('ecoH3').innerText = t.ecoH3; document.getElementById('ecoP1').innerText = t.ecoP1; document.getElementById('ecoP2').innerText = t.ecoP2; document.getElementById('teamTitle').innerText = t.teamTitle; document.getElementById('teamSub').innerText = t.teamSub; document.getElementById('tm1Name').innerText = t.tm1Name; document.getElementById('tm1Pos').innerText = t.tm1Pos; document.getElementById('tm2Name').innerText = t.tm2Name; document.getElementById('tm2Pos').innerText = t.tm2Pos; document.getElementById('tm3Name').innerText = t.tm3Name; document.getElementById('tm3Pos').innerText = t.tm3Pos; document.getElementById('testiTitle').innerText = t.testiTitle; document.getElementById('testiSub').innerText = t.testiSub; document.getElementById('t1Text').innerText = t.t1Text; document.getElementById('t1Name').innerText = t.t1Name; document.getElementById('t1Comp').innerText = t.t1Comp; document.getElementById('t2Text').innerText = t.t2Text; document.getElementById('t2Name').innerText = t.t2Name; document.getElementById('t2Comp').innerText = t.t2Comp; document.getElementById('faqTitle').innerText = t.faqTitle; document.getElementById('faqSub').innerText = t.faqSub; document.getElementById('q1').innerText = t.q1; document.getElementById('a1').innerText = t.a1; document.getElementById('q2').innerText = t.q2; document.getElementById('a2').innerText = t.a2; document.getElementById('q3').innerText = t.q3; document.getElementById('a3').innerText = t.a3; document.getElementById('q4').innerText = t.q4; document.getElementById('a4').innerText = t.a4; document.getElementById('certTitle').innerText = t.certTitle; document.getElementById('contactTitle').innerText = t.contactTitle; document.getElementById('contactSub').innerText = t.contactSub; document.getElementById('infoTitle').innerText = t.infoTitle; document.getElementById('infoAddr').innerText = t.infoAddr; document.getElementById('formName').placeholder = t.formName; document.getElementById('formEmail').placeholder = t.formEmail; document.getElementById('optDefault').innerText = t.optDefault; document.getElementById('optWholesale').innerText = t.optWholesale; document.getElementById('optInvest').innerText = t.optInvest; document.getElementById('optLogistics').innerText = t.optLogistics; document.getElementById('formMsg').placeholder = t.formMsg; document.getElementById('formBtn').innerText = t.formBtn; document.getElementById('footerText').innerText = t.footer; const navMenu = document.getElementById('navLinks'); const menuIconElem = document.getElementById('menuIcon'); if (navMenu.classList.contains('active')) { navMenu.classList.remove('active'); menuIconElem.classList.remove('fa-times'); menuIconElem.classList.add('fa-bars'); } slideIndex = 0; document.getElementById('carouselTrack').style.transform = `translateX(0)`; revealSections(); }
+        function toggleLanguage() { currentLang = currentLang === 'en' ? 'ar' : 'en'; document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr'); document.documentElement.lang = currentLang; const t = data[currentLang]; document.getElementById('logoText').innerHTML = `<i class="fas fa-seedling"></i> ${t.logo}`; document.getElementById('navHome').innerText = t.home; document.getElementById('navAbout').innerText = t.about; document.getElementById('navServices').innerText = t.services; document.getElementById('navProducts').innerText = t.products; document.getElementById('navContact').innerText = t.contact; document.getElementById('langBtn').innerText = t.langBtn; document.getElementById('heroTitle').innerText = t.heroTitle; document.getElementById('heroDesc').innerText = t.heroDesc; document.getElementById('heroBtn').innerText = t.heroBtn; document.getElementById('aboutTitle').innerText = t.aboutTitle; document.getElementById('aboutSub').innerText = t.aboutSub; document.getElementById('aboutH3').innerText = t.aboutH3; document.getElementById('aboutP1').innerText = t.aboutP1; document.getElementById('aboutP2').innerText = t.aboutP2; document.getElementById('stat1Text').innerText = t.stat1Text; document.getElementById('stat2Text').innerText = t.stat2Text; document.getElementById('stat3Text').innerText = t.stat3Text; document.getElementById('infraTitle').innerText = t.infraTitle; document.getElementById('infraSub').innerText = t.infraSub; document.getElementById('inf1').innerText = t.inf1; document.getElementById('inf2').innerText = t.inf2; document.getElementById('inf3').innerText = t.inf3; document.getElementById('servTitle').innerText = t.servTitle; document.getElementById('servSub').innerText = t.servSub; document.getElementById('s1Title').innerText = t.s1Title; document.getElementById('s1Desc').innerText = t.s1Desc; document.getElementById('s2Title').innerText = t.s2Title; document.getElementById('s2Desc').innerText = t.s2Desc; document.getElementById('s3Title').innerText = t.s3Title; document.getElementById('s3Desc').innerText = t.s3Desc; document.getElementById('prodTitle').innerText = t.prodTitle; document.getElementById('prodSub').innerText = t.prodSub; document.getElementById('p1Title').innerText = t.p1Title; document.getElementById('p1Desc').innerText = t.p1Desc; document.getElementById('p2Title').innerText = t.p2Title; document.getElementById('p2Desc').innerText = t.p2Desc; document.getElementById('p3Title').innerText = t.p3Title; document.getElementById('p3Desc').innerText = t.p3Desc; document.getElementById('p4Title').innerText = t.p4Title; document.getElementById('p4Desc').innerText = t.p4Desc; document.getElementById('p5Title').innerText = t.p5Title; document.getElementById('p5Desc').innerText = t.p5Desc; document.getElementById('p6Title').innerText = t.p6Title; document.getElementById('p6Desc').innerText = t.p6Desc; document.getElementById('riceDesc').innerText = t.riceDesc; document.getElementById('ecoTitle').innerText = t.ecoTitle; document.getElementById('ecoSub').innerText = t.ecoSub; document.getElementById('ecoH3').innerText = t.ecoH3; document.getElementById('ecoP1').innerText = t.ecoP1; document.getElementById('ecoP2').innerText = t.ecoP2; document.getElementById('teamTitle').innerText = t.teamTitle; document.getElementById('teamSub').innerText = t.teamSub; document.getElementById('tm1Name').innerText = t.tm1Name; document.getElementById('tm1Pos').innerText = t.tm1Pos; document.getElementById('tm2Name').innerText = t.tm2Name; document.getElementById('tm2Pos').innerText = t.tm2Pos; document.getElementById('tm3Name').innerText = t.tm3Name; document.getElementById('tm3Pos').innerText = t.tm3Pos; document.getElementById('testiTitle').innerText = t.testiTitle; document.getElementById('testiSub').innerText = t.testiSub; document.getElementById('t1Text').innerText = t.t1Text; document.getElementById('t1Name').innerText = t.t1Name; document.getElementById('t1Comp').innerText = t.t1Comp; document.getElementById('t2Text').innerText = t.t2Text; document.getElementById('t2Name').innerText = t.t2Name; document.getElementById('t2Comp').innerText = t.t2Comp; document.getElementById('faqTitle').innerText = t.faqTitle; document.getElementById('faqSub').innerText = t.faqSub; document.getElementById('q1').innerText = t.q1; document.getElementById('a1').innerText = t.a1; document.getElementById('q2').innerText = t.q2; document.getElementById('a2').innerText = t.a2; document.getElementById('q3').innerText = t.q3; document.getElementById('a3').innerText = t.a3; document.getElementById('q4').innerText = t.q4; document.getElementById('a4').innerText = t.a4; document.getElementById('certTitle').innerText = t.certTitle; document.getElementById('contactTitle').innerText = t.contactTitle; document.getElementById('contactSub').innerText = t.contactSub; document.getElementById('infoTitle').innerText = t.infoTitle; document.getElementById('infoAddr').innerText = t.infoAddr; document.getElementById('formName').placeholder = t.formName; document.getElementById('formEmail').placeholder = t.formEmail; document.getElementById('optDefault').innerText = t.optDefault; document.getElementById('optWholesale').innerText = t.optWholesale; document.getElementById('optInvest').innerText = t.optInvest; document.getElementById('optLogistics').innerText = t.optLogistics; document.getElementById('formMsg').placeholder = t.formMsg; document.getElementById('formBtn').innerText = t.formBtn; document.getElementById('footerText').innerText = t.footer; const navMenu = document.getElementById('navLinks'); const menuIconElem = document.getElementById('menuIcon'); if (navMenu.classList.contains('active')) { navMenu.classList.remove('active'); menuIconElem.classList.remove('fa-times'); menuIconElem.classList.add('fa-bars'); } slideIndex = 0; document.getElementById('carouselTrack').style.transform = `translateX(0)`; revealSections(); }
     </script>
 </body>
 
