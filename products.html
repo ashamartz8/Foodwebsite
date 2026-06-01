@@ -62,8 +62,11 @@
             white-space: nowrap;
         }
 
-        .logo i {
-            font-size: 26px;
+        /* logo image styling */
+        .logo img {
+            height: 45px;
+            width: auto;
+            display: block;
         }
 
         .nav-links {
@@ -122,8 +125,8 @@
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        html[dir="rtl"] .logo i {
-            margin-left: 8px;
+        html[dir="rtl"] .logo img {
+            margin-left: 0;
             margin-right: 0;
         }
 
@@ -143,7 +146,7 @@
                 flex-direction: column;
                 padding: 15px 5%;
                 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-                gap: 4px;
+               gap: 20px;
             }
 
             .nav-links.active {
@@ -170,9 +173,8 @@
             .logo {
                 font-size: 18px;
             }
-
-            .logo i {
-                font-size: 22px;
+            .logo img {
+                height: 38px;
             }
         }
     </style>
@@ -236,8 +238,8 @@
 
     <header>
         <nav class="navbar">
-            <a href="index.html" class="logo" id="logoText">
-                <i class="fas fa-seedling"></i> <span id="brandName">Global Foods</span>
+            <a href="index.html" class="logo" id="logoContainer">
+                <img src="images/logo.png" alt="Global Foods Logo">
             </a>
             <div class="menu-toggle" id="menuToggleBtn">
                 <i class="fas fa-bars" id="menuIcon"></i>
@@ -359,22 +361,24 @@
     <script>
         const translations = {
             en: {
-                brandName: "Global Foods",
+                brandLogoAlt: "Global Foods Logo",
                 navHome: "Home", navAbout: "About Us", navServices: "Services", navProducts: "Products", navContact: "Contact",
                 bannerTag: "Global Import-Export Grid", bannerTitle: "PRODUCTS PORTFOLIO", bannerSub: "Home / Sourcing Index",
                 networkLabel: "Premium Logistics", mainGridTitle: "LET'S CHECK OUR SOURCING PRODUCTS",
                 gridSubLabel: "Corporate Grid", gridDescText: "Connecting premium tier local cultivators directly into high-speed cross border freight pipelines.",
                 bottomTitle: "Custom Sourcing ", bottomItalic: "Requirements?", bottomDesc: "Connect with our corporate trade desks directly to draft automated delivery parameters for any custom agricultural node.",
-                bottomBtn: "Contact Trade Desk"
+                bottomBtn: "Contact Trade Desk",
+                langBtn: "AR 🇸🇦"
             },
             ar: {
-                brandName: "الأغذية العالمية",
+                brandLogoAlt: "شعار الأطعمة العالمية",
                 navHome: "الرئيسية", navAbout: "من نحن", navServices: "خدماتنا", navProducts: "منتجاتنا", navContact: "اتصل بنا",
                 bannerTag: "شبكة الاستيراد والتصدير العالمية", bannerTitle: "محفظة المنتجات", bannerSub: "الرئيسية / دليل المصادر",
                 networkLabel: "لوجستيات متميزة", mainGridTitle: "دعونا نتحقق من منتجاتنا المصدرية",
                 gridSubLabel: "الشبكة المؤسسية", gridDescText: "ربط المزارعين المحليين من الدرجة الأولى مباشرة بخطوط الشحن السريع عبر الحدود.",
                 bottomTitle: "متطلبات التوريد ", bottomItalic: "المخصصة؟", bottomDesc: "تواصل مع مكاتب التجارة الخاصة بنا مباشرة لصياغة معايير تسليم مؤتمتة لأي منتج زراعي مخصص.",
-                bottomBtn: "الاتصال بمكتب التجارة"
+                bottomBtn: "الاتصال بمكتب التجارة",
+                langBtn: "EN 🇬🇧"
             }
         };
 
@@ -392,23 +396,33 @@
             document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
             document.documentElement.lang = lang;
 
-            document.getElementById('langBtn').innerText = lang === 'en' ? 'AR 🇸🇦' : 'EN 🇬🇧';
-            document.getElementById('brandName').innerText = t.brandName;
+            // Update language toggle button text
+            document.getElementById('langBtn').innerText = t.langBtn;
+            
+            // Update navigation links
             document.getElementById('navHome').innerText = t.navHome;
             document.getElementById('navAbout').innerText = t.navAbout;
             document.getElementById('navServices').innerText = t.navServices;
             document.getElementById('navProducts').innerText = t.navProducts;
             document.getElementById('navContact').innerText = t.navContact;
+            
+            // Update banner content
             document.getElementById('bannerTag').innerHTML = `<i class='fas fa-globe mr-2'></i>` + t.bannerTag;
             document.getElementById('bannerTitle').innerText = t.bannerTitle;
             document.getElementById('bannerSub').innerText = t.bannerSub;
+            
+            // Update section labels
             document.getElementById('networkLabel').innerText = t.networkLabel;
             document.getElementById('mainGridTitle').innerHTML = t.mainGridTitle;
             document.getElementById('gridSubLabel').innerText = t.gridSubLabel;
             document.getElementById('gridDescText').innerText = t.gridDescText;
+            
+            // Update bottom CTA
             document.getElementById('bottomTitle').innerHTML = t.bottomTitle + `<span class="text-[#0b5345] italic">${t.bottomItalic}</span>`;
             document.getElementById('bottomDesc').innerText = t.bottomDesc;
             document.getElementById('bottomBtn').innerText = t.bottomBtn;
+            
+            // Logo is an image — no text update needed
         }
 
         // Navbar Hamburger Script Toggle
@@ -416,15 +430,28 @@
         const navLinks = document.getElementById('navLinks');
         const menuIcon = document.getElementById('menuIcon');
 
-        menuToggleBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            if (navLinks.classList.contains('active')) {
-                menuIcon.classList.remove('fa-bars');
-                menuIcon.classList.add('fa-times');
-            } else {
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
-            }
+        if (menuToggleBtn) {
+            menuToggleBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                if (navLinks.classList.contains('active')) {
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-times');
+                } else {
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                }
+            });
+        }
+
+        // Close mobile menu when a nav link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                }
+            });
         });
     </script>
 </body>

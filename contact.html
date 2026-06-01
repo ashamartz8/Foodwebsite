@@ -94,8 +94,11 @@
             white-space: nowrap;
         }
 
-        .logo i {
-            font-size: 26px;
+        /* logo image styling */
+        .logo img {
+            height: 45px;
+            width: auto;
+            display: block;
         }
 
         .nav-links {
@@ -668,9 +671,8 @@
             .logo {
                 font-size: 18px;
             }
-
-            .logo i {
-                font-size: 22px;
+            .logo img {
+                height: 38px;
             }
         }
     </style>
@@ -679,8 +681,8 @@
 <body>
     <header>
         <nav class="navbar">
-            <a href="index.html" class="logo" id="logoText">
-                <i class="fas fa-seedling"></i> <span id="brandName">Global Foods</span>
+            <a href="index.html" class="logo" id="logoContainer">
+                <img src="images/logo.png" alt="Global Foods Logo">
             </a>
             <div class="menu-toggle" id="menuToggleBtn">
                 <i class="fas fa-bars" id="menuIcon"></i>
@@ -942,15 +944,24 @@
             const nav = document.getElementById('navLinks');
             const icon = document.getElementById('menuIcon');
             nav.classList.toggle('active');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
+            if (nav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
         }
         document.getElementById('menuToggleBtn').addEventListener('click', toggleMenu);
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 const nav = document.getElementById('navLinks');
                 const icon = document.getElementById('menuIcon');
-                if (nav.classList.contains('active')) { nav.classList.remove('active'); icon.classList.replace('fa-times', 'fa-bars'); }
+                if (nav.classList.contains('active')) { 
+                    nav.classList.remove('active'); 
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
             });
         });
 
@@ -966,11 +977,12 @@
         function handleSubmit(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
+            const originalText = btn.innerText;
             btn.innerText = '...'; btn.disabled = true;
             setTimeout(() => {
                 document.getElementById('successMsg').style.display = 'block';
                 document.getElementById('contactForm').reset();
-                btn.innerText = data[currentLang].submitBtn;
+                btn.innerText = originalText;
                 btn.disabled = false;
                 document.getElementById('successMsg').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }, 1000);
@@ -978,8 +990,7 @@
 
         const data = {
             en: {
-                logo: "Global Foods", home: "Home", about: "About Us", services: "Services", products: "Products", contact: "Contact", langBtn: "AR 🇸🇦",
-                bcHome: "Home", bcPage: "Contact Us",
+                home: "Home", about: "About Us", services: "Services", products: "Products", contact: "Contact", langBtn: "AR 🇸🇦",
                 heroTitle: "Contact Us", heroDesc: "Let's discuss how we can serve your wholesale food supply and agro-investment requirements.",
                 qc1Title: "Headquarters", qc1Desc: "Olaya Tower B, Level 18<br>Riyadh, Kingdom of Saudi Arabia",
                 qc2Title: "Trade Hotline", qc2Desc: "+966 11 234 5678<br>Sun – Thu, 8:00 AM – 6:00 PM",
@@ -1008,8 +1019,7 @@
                 footer: "© 2026 Global Foods Co. All Rights Reserved."
             },
             ar: {
-                logo: "الأطعمة العالمية", home: "الرئيسية", about: "من نحن", services: "خدماتنا", products: "منتجاتنا", contact: "الاتصال", langBtn: "EN 🇬🇧",
-                bcHome: "الرئيسية", bcPage: "الاتصال",
+                home: "الرئيسية", about: "من نحن", services: "خدماتنا", products: "منتجاتنا", contact: "الاتصال", langBtn: "EN 🇬🇧",
                 heroTitle: "اتصل بنا", heroDesc: "دعنا نناقش كيف يمكننا تلبية متطلباتك من التوريد الغذائي والاستثمارات الزراعية.",
                 qc1Title: "المقر الرئيسي", qc1Desc: "برج العليا ب، الدور 18<br>الرياض، المملكة العربية السعودية",
                 qc2Title: "خط التجارة المباشر", qc2Desc: "+966 11 234 5678<br>الأحد – الخميس، 8ص – 6م",
@@ -1044,8 +1054,10 @@
             const t = data[lang];
             document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
             document.documentElement.lang = lang;
-            const ids = ['logoText', 'navHome', 'navAbout', 'navServices', 'navProducts', 'navContact', 'langBtn',
-                'bcHome', 'bcPage', 'heroTitle', 'heroDesc',
+            // Update all translatable texts (logo image remains untouched)
+            const ids = [
+                'navHome', 'navAbout', 'navServices', 'navProducts', 'navContact', 'langBtn',
+                'heroTitle', 'heroDesc',
                 'qc1Title', 'qc2Title', 'qc3Title', 'qc4Title',
                 'formSectionTitle', 'formSectionSub', 'infoTitle', 'infoDesc',
                 'infoAddr1Label', 'infoAddr1', 'infoPhoneLabel', 'infoEmailLabel', 'infoHoursLabel', 'infoHours', 'brandsLabel',
@@ -1053,23 +1065,26 @@
                 'optDefault', 'optWholesale', 'optInvest', 'optLogistics', 'optLabel', 'optQuality',
                 'labelProduct', 'labelMsg', 'submitBtn', 'successText',
                 'mapTitle', 'mapSub', 'faqTitle', 'faqSub',
-                'q1', 'a1', 'q2', 'a2', 'q3', 'a3', 'q4', 'a4', 'q5', 'a5', 'footerText'];
+                'q1', 'a1', 'q2', 'a2', 'q3', 'a3', 'q4', 'a4', 'q5', 'a5', 'footerText'
+            ];
             ids.forEach(id => {
                 const el = document.getElementById(id);
                 if (el && t[id] !== undefined) {
-                    if (id === 'logoText') { el.innerHTML = `<i class="fas fa-seedling"></i> ${t[id]}`; }
-                    else if (id === 'qc1Desc' || id === 'qc2Desc' || id === 'qc3Desc' || id === 'qc4Desc') { el.innerHTML = t[id]; }
-                    else { el.innerText = t[id]; }
+                    el.innerText = t[id];
                 }
             });
-            // quick cards with innerHTML
+            // Update quick card innerHTML
             ['qc1Desc', 'qc2Desc', 'qc3Desc', 'qc4Desc'].forEach(id => {
                 const el = document.getElementById(id);
                 if (el && t[id]) el.innerHTML = t[id];
             });
             const nav = document.getElementById('navLinks');
             const icon = document.getElementById('menuIcon');
-            if (nav.classList.contains('active')) { nav.classList.remove('active'); icon.classList.replace('fa-times', 'fa-bars'); }
+            if (nav.classList.contains('active')) { 
+                nav.classList.remove('active'); 
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
             revealSections();
         }
         function toggleLanguage() { currentLang = currentLang === 'en' ? 'ar' : 'en'; applyLang(currentLang); }
