@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Foods | Products Network</title>
+    <title>Global Foods | Products Network</title>     <link rel="icon" type="image/png" href="images/fav.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -30,15 +30,15 @@
         }
 
         /* Navbar — identical to index.html */
+      /* HEADER */
         header {
-            background-color: rgba(255, 255, 255, 0.98);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(8px);
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            left: 0;
         }
 
         .navbar {
@@ -84,28 +84,28 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text-color);
+            color: var(--text-dark);
             font-weight: 500;
             padding: 8px 12px;
             font-size: 14px;
             border-radius: 30px;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: var(--transition-default);
             white-space: nowrap;
         }
 
         .nav-links a:hover {
-            background-color: rgba(11, 83, 69, 0.08);
+            background: rgba(11, 83, 69, 0.08);
             color: var(--primary-color);
         }
 
         .nav-links a.active-page {
-            background-color: rgba(11, 83, 69, 0.12);
+              background-color: rgba(11, 83, 69, 0.12);
             color: var(--primary-color);
             font-weight: 600;
         }
 
         .lang-btn {
-            background-color: var(--primary-color);
+            background: var(--primary-color);
             color: #fff !important;
             padding: 6px 16px !important;
             border-radius: 30px;
@@ -113,7 +113,7 @@
         }
 
         .lang-btn:hover {
-            background-color: var(--secondary-color);
+            background: var(--secondary-color);
             color: #000 !important;
         }
 
@@ -122,8 +122,8 @@
             font-size: 28px;
             cursor: pointer;
             color: var(--primary-color);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
+
 
         html[dir="rtl"] .logo img {
             margin-left: 0;
@@ -177,6 +177,33 @@
                 height: 38px;
             }
         }
+            /* ── HERO / PAGE BANNER ── */
+        .page-hero {
+            background: linear-gradient(rgba(11, 83, 69, 0.82), rgba(0, 0, 0, 0.65)),
+                url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1400&q=80') no-repeat center center/cover;
+            min-height: 52vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            padding: 120px 20px 80px;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(34px, 7vw, 56px);
+            font-weight: 700;
+            margin-bottom: 14px;
+            line-height: 1.2;
+        }
+
+        .page-hero p {
+            font-size: clamp(15px, 3vw, 20px);
+            opacity: 0.9;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
     </style>
 </head>
 
@@ -247,7 +274,7 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html" id="navHome">Home</a></li>
                 <li><a href="About.html" id="navAbout">About Us</a></li>
-                <li><a href="index.html#services" id="navServices">Services</a></li>
+              
                 <li><a href="products.html" class="active-page" id="navProducts">Products</a></li>
                 <li><a href="contact.html" id="navContact">Contact</a></li>
                 <li><a href="javascript:void(0)" class="lang-btn" onclick="toggleLanguage()" id="langBtn">AR 🇸🇦</a>
@@ -256,21 +283,14 @@
         </nav>
     </header>
 
-    <div class="relative bg-gradient-to-r from-[#0b5345] to-[#116e5c] py-28 text-center
-     overflow-hidden border-b-4 border-[#d4ac0d]">
-        <div class="absolute inset-0 z-0 opacity-15 bg-cover bg-center"
-            style="background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1400&q=80');">
-        </div>
-        <div class="relative z-10 px-4">
-            <span class="text-xs font-bold uppercase tracking-[0.4em] text-[#d4ac0d] bg-black/20 px-4 py-2 rounded-full"
-                id="bannerTag"><i class="fas fa-globe mr-2"></i>Global Import-Export Grid</span>
-            <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight uppercase mt-4" id="bannerTitle">
-                PRODUCTS PORTFOLIO</h1>
-            <p class="text-xs text-gray-300 font-medium tracking-[0.2em] uppercase mt-3" id="bannerSub">Home
-                &nbsp;/&nbsp; Sourcing Index</p>
-        </div>
+    <div class="page-hero">
+    <div>
+        <h1 id="heroTitle">Our Products.</h1>
+        <p id="heroDesc">
+            Explore our premium range of agricultural products, carefully sourced and delivered to meet global quality standards.
+        </p>
     </div>
-
+</div>
     <section class="max-w-[1440px] px-16 max-md:px-4 mx-auto mt-12">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end border-b border-gray-100 pb-10">
             <div class="lg:col-span-8 bg-white">
