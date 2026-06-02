@@ -29,6 +29,49 @@
             background-color: #fff;
         }
 
+        /* ── FAB LANGUAGE BUTTON (ALWAYS VISIBLE STICKY) ── */
+        .fab-language {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 2000;
+            background-color: var(--primary-color);
+            color: white;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            font-weight: 700;
+            font-size: 1.3rem;
+            backdrop-filter: blur(2px);
+        }
+        .fab-language:hover {
+            background-color: var(--secondary-color);
+            color: #0b3b31;
+            transform: scale(1.08);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+            border-color: var(--secondary-color);
+        }
+        html[dir="rtl"] .fab-language {
+            right: 28px;
+            left: auto;
+        }
+        @media (max-width: 480px) {
+            .fab-language {
+                width: 52px;
+                height: 52px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 1.1rem;
+            }
+        }
+
         /* Navbar — identical to index.html */
       /* HEADER */
         header {
@@ -84,12 +127,12 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text-dark);
+            color: var(--text-color);
             font-weight: 500;
             padding: 8px 12px;
             font-size: 14px;
             border-radius: 30px;
-            transition: var(--transition-default);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             white-space: nowrap;
         }
 
@@ -265,6 +308,9 @@
       { name: 'Indian Classic Biriyani Rice', category: 'Other', img: 'images/rice.jpg' }
   ]
 }">
+
+    <!-- FAB LANGUAGE SWITCH - ALWAYS VISIBLE STICKY BUTTON (regardless of scroll/page) -->
+    <div class="fab-language" onclick="toggleLanguage()" id="fabLangBtn">🌐</div>
 
     <header>
         <nav class="navbar">

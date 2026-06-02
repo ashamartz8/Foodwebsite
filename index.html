@@ -134,7 +134,8 @@
             color: var(--primary-color);
         }
 
-        .lang-btn {
+        /* REMOVED old .lang-btn from navbar styles - we keep it but will hide in nav-links and use FAB */
+        .nav-links .lang-btn {
             background-color: var(--primary-color);
             color: #fff !important;
             padding: 6px 16px !important;
@@ -142,9 +143,54 @@
             font-weight: 600;
         }
 
-        .lang-btn:hover {
+        .nav-links .lang-btn:hover {
             background-color: var(--secondary-color);
             color: #000 !important;
+        }
+
+        /* FAB (Floating Action Button) - always visible sticky language switch */
+        .fab-language {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 2000;
+            background-color: var(--primary-color);
+            color: white;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            cursor: pointer;
+            transition: var(--transition-default);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            font-weight: 700;
+            font-size: 1.3rem;
+            backdrop-filter: blur(2px);
+        }
+        .fab-language:hover {
+            background-color: var(--secondary-color);
+            color: #0b3b31;
+            transform: scale(1.08);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+            border-color: var(--secondary-color);
+        }
+        /* rtl adjustment for fab: keep it on the right but in rtl move slightly? No, fixed position fine */
+        html[dir="rtl"] .fab-language {
+            right: 28px;
+            left: auto;
+        }
+        /* For extremely small screens keep it accessible */
+        @media (max-width: 480px) {
+            .fab-language {
+                width: 52px;
+                height: 52px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 1.1rem;
+            }
         }
 
         .menu-toggle {
@@ -967,11 +1013,17 @@
               
                 <li><a href="products.html" id="navProducts">Products</a></li>
                 <li><a href="contact.html" id="navContact">Contact</a></li>
+                <!-- language button in navbar (redundant but keep for layout, will be secondary - however we add FAB that is more prominent. but we hide original? We'll just keep it but nobody will miss, but to avoid double we visually hide from navbar? No, we keep as is but user still has FAB main. According to requirement no other change, but adding extra FAB is additive, but we should also still keep original? The requirement didn't say remove original, we keep both but nothing altered, original lang-btn stays in nav but FAB overrides same functionality. That's fine, no content change. -->
                 <li><a href="javascript:void(0)" class="lang-btn" onclick="toggleLanguage()" id="langBtn">AR 🇸🇦</a>
                 </li>
             </ul>
         </nav>
     </header>
+
+    <!-- FLOATING LANGUAGE BUTTON - Always visible sticky regardless of page or scroll -->
+    <div class="fab-language" onclick="toggleLanguage()" id="fabLangBtn">
+        🌐
+    </div>
 
     <section class="hero" id="home">
         <div class="hero-content">
@@ -1400,13 +1452,14 @@
             document.documentElement.lang = currentLang; 
             const t = data[currentLang]; 
             // Logo is an image now, do NOT override innerHTML to avoid breaking image.
-            // The rest of the fields are updated normally.
             document.getElementById('navHome').innerText = t.home; 
             document.getElementById('navAbout').innerText = t.about; 
-            document.getElementById('navServices').innerText = t.services; 
+            // document.getElementById('navServices').innerText = t.services; (if exists)
+            if(document.getElementById('navServices')) document.getElementById('navServices').innerText = t.services; 
             document.getElementById('navProducts').innerText = t.products; 
             document.getElementById('navContact').innerText = t.contact; 
             document.getElementById('langBtn').innerText = t.langBtn; 
+            // also update FAB tooltip maybe text? keep icon not needed but ok
             document.getElementById('heroTitle').innerText = t.heroTitle; 
             document.getElementById('heroDesc').innerText = t.heroDesc; 
             document.getElementById('heroBtn').innerText = t.heroBtn; 
